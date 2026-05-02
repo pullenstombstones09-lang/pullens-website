@@ -54,11 +54,11 @@ export default function HowToChoosePage() {
               At Pullen&apos;s, we offer five distinct ranges to suit every family&apos;s needs and budget:
             </p>
             <ul className="list-disc pl-6 space-y-2">
-              <li><strong>More for Less</strong> — Quality granite from R3,200. Ideal for families wanting a dignified memorial at an affordable price.</li>
-              <li><strong>Prestige</strong> — Our most popular range (R5,500–R9,800). Premium granite with wide design variety.</li>
-              <li><strong>Signature</strong> — Larger memorials with intricate detail (R11,500–R18,000).</li>
-              <li><strong>Exclusive</strong> — Fully custom, one-of-a-kind memorials. Quote on request.</li>
-              <li><strong>Baby</strong> — Gentle, sensitive memorials for the smallest lives (R2,800–R3,800).</li>
+              <li><strong>More for Less</strong> — Quality granite at an affordable price. Ideal for families wanting a dignified memorial within a tight budget.</li>
+              <li><strong>Prestige</strong> — Our most popular range. Premium granite with wide design variety. The sweet spot of craftsmanship and value.</li>
+              <li><strong>Signature</strong> — Larger memorials with intricate detail and premium craftsmanship for families who want something exceptional.</li>
+              <li><strong>Exclusive</strong> — Fully custom, one-of-a-kind memorials designed from scratch.</li>
+              <li><strong>Baby</strong> — Gentle, sensitive memorials for the smallest lives.</li>
             </ul>
 
             <h2 className="font-display font-bold text-2xl text-navy mt-10 mb-3">

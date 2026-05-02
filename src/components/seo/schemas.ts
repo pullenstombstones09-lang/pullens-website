@@ -45,7 +45,7 @@ export function localBusinessSchema() {
 export function productSchema(
   rangeName: string,
   description: string,
-  priceRange: string
+  budgetTier: string
 ) {
   return {
     "@context": "https://schema.org",
@@ -57,9 +57,10 @@ export function productSchema(
       name: BRAND.name,
     },
     offers: {
-      "@type": "AggregateOffer",
+      "@type": "Offer",
       priceCurrency: "ZAR",
-      priceRange,
+      availability: "https://schema.org/InStock",
+      description: budgetTier,
     },
   };
 }

@@ -22,7 +22,7 @@ const FAQ_ITEMS = [
   {
     question: "How much does a tombstone cost?",
     answer:
-      "Our ranges start from R3,200 for the More for Less range, with options through to our Exclusive custom-quoted memorials. The final price depends on the size, granite type, design complexity, and covering type you choose. We offer flexible payment plans to suit every family's budget.",
+      "We have memorials to suit every budget — from our affordable More for Less range through to our bespoke Exclusive collection. The final price depends on the size, granite type, design complexity, and covering type you choose. WhatsApp us with your budget and we'll recommend the best options. We also offer flexible payment plans.",
   },
   {
     question: "What covering types are available?",
@@ -193,12 +193,12 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* ─── 6. Two Locations ─── */}
+      {/* ─── 6. Locations ─── */}
       <Section className="bg-cream" id="locations">
         <h2 className="font-display font-bold text-3xl sm:text-4xl text-navy text-center mb-10">
           Visit Us
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {LOCATIONS.map((loc) => (
             <div
               key={loc.id}
@@ -207,36 +207,47 @@ export default function HomePage() {
               <h3 className="font-display font-bold text-xl text-navy mb-1">
                 {loc.name}
               </h3>
-              <p className="text-sm text-charcoal/60 mb-4">{loc.type}</p>
+              <p className="text-sm text-charcoal/60 mb-4">
+                {loc.type}
+                {loc.status === "opening-soon" && (
+                  <span className="ml-2 text-xs font-semibold text-orange">Opening Soon</span>
+                )}
+              </p>
 
               <div className="space-y-3 text-sm text-charcoal/80">
                 <div className="flex items-start gap-2">
                   <MapPin className="h-4 w-4 mt-0.5 text-gold flex-shrink-0" />
                   <span>{loc.address}</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-gold flex-shrink-0" />
-                  <a
-                    href={`tel:${loc.phone.replace(/\s/g, "")}`}
-                    className="hover:text-navy transition-colors"
-                  >
-                    {loc.phone}
-                  </a>
-                </div>
-                <p className="text-charcoal/50 text-xs">{loc.hours}</p>
+                {loc.status === "open" && (
+                  <>
+                    <div className="flex items-center gap-2">
+                      <Phone className="h-4 w-4 text-gold flex-shrink-0" />
+                      <a
+                        href={`tel:${loc.phone.replace(/\s/g, "")}`}
+                        className="hover:text-navy transition-colors"
+                      >
+                        {loc.phone}
+                      </a>
+                    </div>
+                    <p className="text-charcoal/50 text-xs">{loc.hours}</p>
+                  </>
+                )}
               </div>
 
-              <div className="mt-5">
-                <Button
-                  variant="whatsapp"
-                  href={whatsappLink(
-                    loc.whatsapp,
-                    `Hi, I'd like to enquire about tombstones at your ${loc.shortName} branch.`
-                  )}
-                >
-                  WhatsApp {loc.whatsappDisplay}
-                </Button>
-              </div>
+              {loc.status === "open" && (
+                <div className="mt-5">
+                  <Button
+                    variant="whatsapp"
+                    href={whatsappLink(
+                      loc.whatsapp,
+                      `Hi, I'd like to enquire about tombstones at your ${loc.shortName} branch.`
+                    )}
+                  >
+                    WhatsApp {loc.whatsappDisplay}
+                  </Button>
+                </div>
+              )}
             </div>
           ))}
         </div>

@@ -14,7 +14,7 @@ const pinetown = LOCATIONS[1];
 export const metadata: Metadata = {
   title: "Tombstones in Durban & Pinetown | Pullen's Tombstones Showroom",
   description:
-    "Visit our Pinetown tombstone showroom at 9 Circuit Road, Westmead. Granite headstones, custom engraving, and dignified service. WhatsApp 081 213 8812.",
+    "Visit our Pinetown tombstone showroom at 9 Circuit Road, Westmead. Granite tombstones, custom engraving, and dignified service. WhatsApp 081 213 8812.",
 };
 
 function pinetownLocalBusinessSchema() {
@@ -181,7 +181,7 @@ export default function PinetownPage() {
               </h3>
               <p className="text-sm text-charcoal/70 mb-3">{range.description}</p>
               <div className="flex items-center justify-between text-sm">
-                <span className="font-semibold text-navy">{range.priceRange}</span>
+                <span className="font-semibold text-navy">{range.budgetTier}</span>
                 <span className="text-orange font-bold group-hover:translate-x-1 transition-transform">
                   View designs &rarr;
                 </span>

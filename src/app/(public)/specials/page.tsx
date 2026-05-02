@@ -8,46 +8,60 @@ import { whatsappLink } from "@/lib/utils";
 import { Gift, CreditCard, CheckCircle } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Tombstone Specials & Prices — May 2026 | Pullen's Tombstones",
+  title: "Memorial Specials — May 2026 | Pullen's Tombstones",
   description:
-    "Monthly tombstone specials in KZN. Granite headstones from R3,200. Payment plans available. WhatsApp for a free quote.",
+    "Monthly memorial specials in KZN. Choose your budget and we'll recommend the perfect memorial for your family. Payment plans available. WhatsApp for a free quote.",
 };
 
-const SPECIALS = [
+const BUDGET_TIERS = [
   {
-    name: "Prestige P10",
-    price: "From R6,500",
-    wasPrice: "Was R7,200",
-    description: "Our most popular design at a special price",
-    image: "/images/specials/prestige-p10.jpg",
+    tier: "Affordable",
+    label: "I have a tight budget",
+    description: "Quality granite memorials that prove dignity doesn't require a fortune. Perfect for families who want a beautiful tribute at an accessible price.",
+    ranges: "More for Less, Baby",
+    cta: "Hi, I'm looking for an affordable memorial. Can you help?",
   },
   {
-    name: "More for Less M2",
-    price: "From R3,200",
-    wasPrice: null,
-    description: "Complete memorial with kerbs & chips",
-    image: "/images/specials/more-for-less-m2.jpg",
+    tier: "Mid-range",
+    label: "I want quality and variety",
+    description: "Our most popular range with 62+ designs. Premium granite, multiple sizes, and all covering types. The sweet spot of craftsmanship and value.",
+    ranges: "Prestige",
+    cta: "Hi, I'm interested in the Prestige range. What options are available?",
   },
   {
-    name: "Free Photo Engraving",
-    price: "Worth R850",
-    wasPrice: null,
-    description: "On any Signature range memorial this month",
-    image: "/images/specials/photo-engraving.jpg",
+    tier: "Premium",
+    label: "I want something exceptional",
+    description: "Larger memorials with intricate detail, premium-grade granite, and exceptional attention to craft. For families who want their memorial to make a lasting impression.",
+    ranges: "Signature",
+    cta: "Hi, I'm interested in the Signature range. Can we discuss options?",
+  },
+  {
+    tier: "Bespoke",
+    label: "I want one-of-a-kind",
+    description: "Fully custom memorials designed from scratch. Custom materials, unique shapes, and the finest craftsmanship. Each one as individual as the life it celebrates.",
+    ranges: "Exclusive",
+    cta: "Hi, I'd like to discuss a custom Exclusive memorial.",
   },
 ] as const;
 
-const RANGE_PRICES = [
-  { name: "More for Less", price: "From R3,200" },
-  { name: "Prestige", price: "From R5,500" },
-  { name: "Signature", price: "From R11,500" },
-  { name: "Exclusive", price: "Custom quote" },
-  { name: "Baby", price: "From R2,800" },
+const SPECIALS = [
+  {
+    name: "Free Photo Engraving",
+    description: "On any Signature range memorial this month",
+  },
+  {
+    name: "Free Delivery in KZN",
+    description: "On all orders placed in May 2026",
+  },
+  {
+    name: "Founding Family Discount",
+    description: "First-time customers receive a special rate — ask us on WhatsApp",
+  },
 ] as const;
 
 const WA = whatsappLink(
   LOCATIONS[0].whatsapp,
-  "Hi, I'm interested in your May 2026 tombstone specials."
+  "Hi, I'm interested in your May 2026 memorial specials."
 );
 
 export default function SpecialsPage() {
@@ -59,115 +73,63 @@ export default function SpecialsPage() {
           { name: "Specials", url: "https://pullenstombstones.co.za/specials" },
         ])}
       />
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "OfferCatalog",
-          name: "May 2026 Tombstone Specials",
-          description:
-            "Monthly tombstone specials from Pullen's Tombstones in KwaZulu-Natal",
-          provider: {
-            "@type": "LocalBusiness",
-            name: BRAND.name,
-          },
-          itemListElement: SPECIALS.map((s, i) => ({
-            "@type": "ListItem",
-            position: i + 1,
-            item: {
-              "@type": "Offer",
-              name: s.name,
-              description: s.description,
-              priceCurrency: "ZAR",
-            },
-          })),
-        }}
-      />
 
       {/* Hero */}
       <Section className="text-center">
         <p className="text-sm font-semibold uppercase tracking-wider text-orange mb-2">
-          Tombstone prices 2026
+          May 2026
         </p>
         <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-navy mb-4">
-          May 2026 Specials
+          Choose Your Budget
         </h1>
         <p className="text-lg text-charcoal/80 max-w-xl mx-auto">
-          Quality memorials at special prices — this month only
+          Tell us what you can afford and we&apos;ll recommend the perfect memorial for your family. Every budget deserves dignity.
         </p>
       </Section>
 
-      {/* Featured Specials */}
+      {/* Budget Tiers */}
       <Section>
-        <h2 className="font-display text-2xl sm:text-3xl font-bold text-navy mb-8 text-center">
-          Featured Specials
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SPECIALS.map((special, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {BUDGET_TIERS.map((tier) => (
             <div
-              key={special.name}
+              key={tier.tier}
               className="rounded-lg bg-cream p-6 flex flex-col shadow-[0_1px_4px_rgba(0,0,0,0.06),0_4px_16px_rgba(0,0,0,0.08)]"
-              style={{ animationDelay: `${i * 150}ms` }}
             >
-              <div className="aspect-[4/3] rounded-md bg-charcoal/5 mb-4 flex items-center justify-center overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={special.image}
-                  alt={special.name}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-
-              <h3 className="font-display text-xl font-bold text-navy mb-1">
-                {special.name}
-              </h3>
-              <p className="text-sm text-charcoal/70 mb-3">
-                {special.description}
+              <p className="text-xs font-semibold uppercase tracking-wider text-orange mb-1">
+                {tier.tier}
               </p>
-
-              <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-2xl font-bold text-orange">
-                  {special.price}
-                </span>
-                {special.wasPrice && (
-                  <span className="text-sm text-charcoal/50 line-through">
-                    {special.wasPrice}
-                  </span>
-                )}
-              </div>
-
-              <div className="mt-auto">
-                <Button
-                  variant="whatsapp"
-                  href={whatsappLink(
-                    LOCATIONS[0].whatsapp,
-                    `Hi, I'd like to claim the ${special.name} special.`
-                  )}
-                  className="w-full"
-                >
-                  Claim This Special
-                </Button>
-              </div>
+              <h3 className="font-display text-xl font-bold text-navy mb-2">
+                {tier.label}
+              </h3>
+              <p className="text-sm text-charcoal/70 mb-4 flex-1">
+                {tier.description}
+              </p>
+              <p className="text-xs text-charcoal/50 mb-4">
+                Ranges: {tier.ranges}
+              </p>
+              <Button
+                variant="whatsapp"
+                href={whatsappLink(LOCATIONS[0].whatsapp, tier.cta)}
+                className="w-full"
+              >
+                Get a Quote
+              </Button>
             </div>
           ))}
         </div>
       </Section>
 
-      {/* All Ranges Starting Prices */}
+      {/* This Month's Specials */}
       <Section dark>
         <h2 className="font-display text-2xl sm:text-3xl font-bold mb-8 text-center">
-          All Ranges — Starting Prices
+          This Month&apos;s Specials
         </h2>
-        <div className="max-w-lg mx-auto">
-          {RANGE_PRICES.map((range) => (
-            <div
-              key={range.name}
-              className="flex items-center justify-between py-4 border-b border-white/10 last:border-b-0"
-            >
-              <span className="font-semibold text-lg">{range.name}</span>
-              <span className="text-orange font-bold text-lg">
-                {range.price}
-              </span>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {SPECIALS.map((special) => (
+            <div key={special.name} className="text-center">
+              <Gift className="h-8 w-8 text-orange mx-auto mb-3" />
+              <h3 className="font-bold text-lg mb-1">{special.name}</h3>
+              <p className="text-white/70 text-sm">{special.description}</p>
             </div>
           ))}
         </div>
@@ -200,12 +162,11 @@ export default function SpecialsPage() {
       {/* WhatsApp CTA */}
       <Section className="bg-cream">
         <div className="text-center">
-          <Gift className="h-10 w-10 text-orange mx-auto mb-4" />
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-navy mb-4">
-            Interested in a Special?
+            Not sure which budget fits?
           </h2>
           <p className="text-charcoal/70 mb-6">
-            WhatsApp us now for a free quote or to claim any of our May specials.
+            WhatsApp us with your budget and we&apos;ll recommend the best options for your family.
           </p>
           <Button variant="whatsapp" href={WA}>
             WhatsApp Us Now

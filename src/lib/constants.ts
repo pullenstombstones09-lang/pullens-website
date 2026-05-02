@@ -36,6 +36,21 @@ export const LOCATIONS = [
     type: "HQ + Factory" as const,
     hours: "Mon-Fri 08:00-17:00, Sat 08:00-13:00",
     gps: { lat: -29.5868, lng: 30.3797 },
+    status: "open" as const,
+  },
+  {
+    id: "church-street",
+    name: "Pietermaritzburg (Church Street)",
+    shortName: "Church St",
+    address:
+      "557 Church Street, Pietermaritzburg Central, 3201, KwaZulu-Natal, South Africa",
+    phone: "033 387 8913",
+    whatsapp: "+27812130772",
+    whatsappDisplay: "081 213 0772",
+    type: "Showroom" as const,
+    hours: "Mon-Fri 08:00-17:00, Sat 08:00-13:00",
+    gps: { lat: -29.6006, lng: 30.3794 },
+    status: "open" as const,
   },
   {
     id: "pinetown",
@@ -49,6 +64,21 @@ export const LOCATIONS = [
     type: "Factory + Showroom" as const,
     hours: "Mon-Fri 08:00-17:00, Sat 08:00-13:00",
     gps: { lat: -29.8063, lng: 30.8571 },
+    status: "open" as const,
+  },
+  {
+    id: "ladysmith",
+    name: "Ladysmith",
+    shortName: "Ladysmith",
+    address:
+      "Ladysmith, KwaZulu-Natal, South Africa",
+    phone: "033 387 8913",
+    whatsapp: "+27812130772",
+    whatsappDisplay: "081 213 0772",
+    type: "Showroom" as const,
+    hours: "Opening soon",
+    gps: { lat: -28.5596, lng: 29.7812 },
+    status: "opening-soon" as const,
   },
 ] as const;
 

@@ -23,7 +23,7 @@ export function RangeCard({ range, featuredImage }: RangeCardProps) {
         <h3 className="font-display font-bold text-xl text-navy">
           {range.name}
         </h3>
-        <p className="text-sm text-charcoal/70 mt-1">{range.priceRange}</p>
+        <p className="text-sm text-charcoal/70 mt-1">{range.budgetTier}</p>
         <div className="mt-4">
           <Button variant="secondary" href={`/catalogue/${range.slug}`}>
             View Range

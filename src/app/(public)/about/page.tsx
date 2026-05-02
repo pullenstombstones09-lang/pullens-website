@@ -203,7 +203,7 @@ export default function AboutPage() {
         <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-10 text-center">
           Visit Us
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           {LOCATIONS.map((loc, i) => (
             <div
               key={loc.id}
@@ -215,6 +215,9 @@ export default function AboutPage() {
               </h3>
               <p className="text-sm text-gold font-semibold mb-4">
                 {loc.type}
+                {loc.status === "opening-soon" && (
+                  <span className="ml-2 text-orange text-xs">Opening Soon</span>
+                )}
               </p>
 
               <div className="space-y-3 text-white/70 text-sm mb-6">
@@ -222,26 +225,32 @@ export default function AboutPage() {
                   <MapPin className="h-4 w-4 text-gold mt-0.5 flex-shrink-0" />
                   {loc.address}
                 </p>
-                <p className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-gold flex-shrink-0" />
-                  {loc.phone}
-                </p>
-                <p className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-gold flex-shrink-0" />
-                  {loc.hours}
-                </p>
+                {loc.status === "open" && (
+                  <>
+                    <p className="flex items-center gap-2">
+                      <Phone className="h-4 w-4 text-gold flex-shrink-0" />
+                      {loc.phone}
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <Clock className="h-4 w-4 text-gold flex-shrink-0" />
+                      {loc.hours}
+                    </p>
+                  </>
+                )}
               </div>
 
-              <Button
-                variant="whatsapp"
-                href={whatsappLink(
-                  loc.whatsapp,
-                  `Hi, I'd like to visit your ${loc.shortName} showroom. Can you help me?`
-                )}
-                className="w-full sm:w-auto"
-              >
-                WhatsApp {loc.shortName}
-              </Button>
+              {loc.status === "open" && (
+                <Button
+                  variant="whatsapp"
+                  href={whatsappLink(
+                    loc.whatsapp,
+                    `Hi, I'd like to visit your ${loc.shortName} showroom. Can you help me?`
+                  )}
+                  className="w-full sm:w-auto"
+                >
+                  WhatsApp {loc.shortName}
+                </Button>
+              )}
             </div>
           ))}
         </div>

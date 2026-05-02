@@ -7,16 +7,16 @@ import { LOCATIONS } from "@/lib/constants";
 import { whatsappLink } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "How Much Does a Tombstone Cost? | FAQ",
+  title: "Tombstone FAQ | Pullen's Tombstones",
   description:
-    "Answers to common questions about tombstone prices, covering types, payment plans, and more. Granite tombstones from R3,200 in KZN.",
+    "Answers to common questions about tombstones, covering types, payment plans, and more. KZN's most trusted tombstone manufacturer since 1982.",
 };
 
 const FAQ_ITEMS = [
   {
-    question: "How much does a tombstone cost in South Africa?",
+    question: "How much does a tombstone cost?",
     answer:
-      "Our ranges start from R3,200 for the More for Less range, through R5,500\u2013R9,800 for Prestige, R11,500\u2013R18,000 for Signature, and custom pricing for Exclusive designs. Baby memorials start from R2,800. Final price depends on size, design, covering type, and extras like photo engraving (R850) or additional inscription letters.",
+      "We have memorials to suit every budget \u2014 from our affordable More for Less range through to our bespoke Exclusive collection. The final price depends on size, granite type, design complexity, and covering type. WhatsApp us with your budget and we\u2019ll recommend the best options for your family.",
   },
   {
     question: "What granite colours are available?",
@@ -26,27 +26,27 @@ const FAQ_ITEMS = [
   {
     question: "What are the different covering types?",
     answer:
-      "Head & Base (collect & carry, R1,200 erection), Kerbs & Chips (R2,500), Tiles (R2,500), and Kerbs & Slab (R3,200). Each offers a different look \u2014 kerbs & chips is our most popular choice, while tiles offer a clean, modern finish.",
+      "Head & Base (the headstone on a simple base), Kerbs & Chips (bordered area filled with stone chips), Tiles (tiled surface within kerbs), and Kerbs & Slab (solid granite slab covering). Each offers a different look and budget level \u2014 ask us which suits your needs.",
   },
   {
     question: "How long does a tombstone take to make?",
     answer:
-      "We can manufacture a standard tombstone in as little as one day for urgent orders. Typical turnaround depends on design complexity and current workload. Contact us for a timeline on your specific requirements.",
+      "We can manufacture a standard memorial in as little as one day for urgent orders. Typical turnaround depends on design complexity and current workload. Contact us for a timeline on your specific requirements.",
   },
   {
     question: "Do you offer payment plans?",
     answer:
-      "Yes. We accept any deposit amount to get started. The balance is due before installation or collection. We offer flexible payment plans to suit your budget.",
+      "Yes. We accept any deposit amount to get started. The balance is due before installation or collection. We offer flexible payment plans to suit your budget \u2014 no interest or hidden fees.",
   },
   {
     question: "What areas do you deliver to?",
     answer:
-      "Free delivery within 50km of our factory. Beyond 50km, transport is R10/km for direct customers. We deliver throughout KwaZulu-Natal and can quote for national delivery within 24 hours.",
+      "We deliver throughout KwaZulu-Natal and can quote for national delivery within 24 hours. Contact us for delivery details to your specific area.",
   },
   {
     question: "How does the inscription process work?",
     answer:
-      "You provide us with the wording \u2014 either in person, via WhatsApp, or by phone. We create a digital preview for you to review. Once you confirm every name, date, and word is correct, we proceed. 80 letters are included free; extra letters are R5 each.",
+      "You provide us with the wording \u2014 either in person, via WhatsApp, or by phone. We create a digital preview for you to review. Once you confirm every name, date, and word is correct, we proceed with engraving.",
   },
   {
     question: "What is a tombstone unveiling ceremony?",
@@ -61,17 +61,17 @@ const FAQ_ITEMS = [
   {
     question: "Do you do baby memorials?",
     answer:
-      "Yes. Our Baby range (from R2,800) offers gentle, dignified memorials for infant and child loss. We handle these orders with extra sensitivity and care. Sizes range from 400x250mm to 600x350mm.",
+      "Yes. Our Baby range offers gentle, dignified memorials for infant and child loss. We handle these orders with extra sensitivity and care. Sizes range from 400x250mm to 600x350mm.",
   },
   {
     question: "Where are your showrooms?",
     answer:
-      "We have two locations: our head office and factory at 46 Allandale Drive, Pietermaritzburg, and our Pinetown showroom at 9 Circuit Road, Westmead. Both are open Mon\u2013Fri 08:00\u201317:00 and Sat 08:00\u201313:00.",
+      "We have showrooms in Pietermaritzburg (46 Allandale Drive and 557 Church Street), Pinetown (9 Circuit Road, Westmead), and Ladysmith (opening soon). All are open Mon\u2013Fri 08:00\u201317:00 and Sat 08:00\u201313:00.",
   },
   {
     question: "How do I get a quote?",
     answer:
-      "The easiest way is WhatsApp \u2014 send us a message with the range you\u2019re interested in and any specific requirements. We\u2019ll respond with a detailed quote. You can also visit either showroom or call us directly.",
+      "The easiest way is WhatsApp \u2014 send us a message with the range you\u2019re interested in and any specific requirements. We\u2019ll respond with a detailed quote. You can also visit any showroom or call us directly.",
   },
 ];
 
@@ -93,7 +93,7 @@ export default function FAQPage() {
           Frequently Asked Questions
         </h1>
         <p className="text-lg text-charcoal/80 max-w-2xl mb-12">
-          Everything you need to know about tombstone prices, materials,
+          Everything you need to know about tombstones, materials,
           delivery, and the ordering process.
         </p>
 

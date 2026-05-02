@@ -31,16 +31,16 @@ interface RangeContent {
 
 const RANGE_CONTENT: Record<string, RangeContent> = {
   prestige: {
-    metaTitle: "Prestige Granite Headstones",
+    metaTitle: "Prestige Granite Tombstones",
     metaDescription:
-      "Browse 62 Prestige granite headstone designs from R5,500. Premium granite memorials in multiple sizes and covering types. South Africa's most popular tombstone range.",
+      "Browse 62 Prestige granite memorial designs. Premium granite memorials in multiple sizes and covering types. South Africa's most popular memorial range.",
     longDescription: `The Prestige range is the most popular collection in our catalogue, and for good reason. With 62 individual designs to choose from, it offers the widest variety of any range we produce — giving families the freedom to find a memorial that truly resonates with their vision.
 
 Every Prestige headstone is manufactured from premium-grade granite sourced for its density, colour consistency, and long-term durability. Granite is a natural igneous rock that withstands the harsh South African climate — from the subtropical humidity of KwaZulu-Natal to the frost of the inland highveld — without cracking, fading, or deteriorating. A Prestige memorial installed today will look just as dignified in fifty years.
 
 The range covers three standard headstone sizes — 700x400mm, 900x500mm, and 1200x600mm — so whether the grave site is a single plot in a municipal cemetery or a larger family plot, there is a Prestige design that fits. Covering options span all four types we offer: Head and Base for a clean, classic look; Kerbs and Chips for a defined border with decorative stone infill; Tiles for a polished, low-maintenance surface; and Kerbs and Slab for a solid granite platform that makes a bold statement.
 
-What sets the Prestige range apart is the balance it strikes between craftsmanship and value. These are not entry-level memorials — they feature detailed engravings, polished edges, and thoughtful proportions — yet they sit at a mid-market price point that most families find comfortable. Starting from R5,500, a Prestige tombstone delivers quality that rivals more expensive ranges without the premium price tag.
+What sets the Prestige range apart is the balance it strikes between craftsmanship and value. These are not entry-level memorials — they feature detailed engravings, polished edges, and thoughtful proportions — yet they sit at a mid-range budget that most families find comfortable. A Prestige memorial delivers quality that rivals more expensive ranges without the premium price tag.
 
 If you are unsure which range is right for you, the Prestige collection is an excellent place to start. Its breadth of design means you are likely to find something close to what you have in mind, and our team can personalise any design with custom inscriptions, portraits, and decorative elements.`,
     faqs: [
@@ -68,9 +68,9 @@ If you are unsure which range is right for you, the Prestige collection is an ex
   },
 
   signature: {
-    metaTitle: "Signature Granite Memorial Headstones",
+    metaTitle: "Signature Granite Tombstones",
     metaDescription:
-      "Explore 37 Signature memorial headstone designs from R11,500. Larger granite memorials with intricate detail and premium craftsmanship for families who want something exceptional.",
+      "Explore 37 Signature memorial designs. Larger granite memorials with intricate detail and premium craftsmanship for families who want something exceptional.",
     longDescription: `The Signature range is designed for families who want their memorial to make a lasting impression. With 37 carefully curated designs, this collection represents the upper tier of our standard catalogue — larger headstones, more intricate detailing, and a level of craftsmanship that speaks for itself.
 
 Each Signature memorial starts with a block of premium granite, hand-selected for consistent colour and minimal veining. Our craftsmen then shape, polish, and engrave every piece in our Pietermaritzburg and Pinetown factories, using a combination of diamond-tipped cutting tools and precision laser engraving. The result is a headstone with crisp lines, mirror-polished surfaces, and engravings that remain sharp and legible for generations.
@@ -79,7 +79,7 @@ Signature headstones are available in three sizes — 900x500mm, 1200x600mm, and
 
 Covering options for the Signature range include Kerbs and Chips, Tiles, and Kerbs and Slab. These higher-end covering types complement the premium nature of the headstone and create a cohesive, polished look across the entire grave site. Many families choose the Kerbs and Slab option for its clean lines and the sense of permanence it conveys.
 
-Priced from R11,500, the Signature range is an investment in a memorial that will stand as a testament to a life well lived. Every detail — from the weight of the granite to the depth of the engraving — is considered. If you are looking for a memorial that goes beyond the ordinary, this is the range to explore.
+The Signature range is an investment in a memorial that will stand as a testament to a life well lived. Every detail — from the weight of the granite to the depth of the engraving — is considered. If you are looking for a memorial that goes beyond the ordinary, this is the range to explore.
 
 Our consultants can guide you through the full Signature collection, help you select the right granite colour and finish, and work with you on a personalised design that captures exactly what you want to say.`,
     faqs: [
@@ -109,8 +109,8 @@ Our consultants can guide you through the full Signature collection, help you se
   "more-for-less": {
     metaTitle: "Affordable Tombstones South Africa",
     metaDescription:
-      "Quality granite tombstones from R3,200 in the More for Less range. 7 affordable memorial designs that prove honouring your loved one doesn't have to cost a fortune.",
-    longDescription: `The More for Less range exists because we believe every family deserves a dignified memorial, regardless of budget. With 7 thoughtfully designed options starting from just R3,200, this range delivers genuine quality granite craftsmanship at the most accessible price point in our catalogue.
+      "Quality granite memorials in the More for Less range. 7 affordable memorial designs that prove honouring your loved one doesn't have to cost a fortune.",
+    longDescription: `The More for Less range exists because we believe every family deserves a dignified memorial, regardless of budget. With 7 thoughtfully designed options, this range delivers genuine quality granite craftsmanship at the most accessible price point in our catalogue.
 
 These are not inferior products. Every More for Less headstone is manufactured from the same grade of natural granite used across our other ranges. The stone is cut, shaped, and polished in our own factories by the same craftsmen who produce our Prestige and Signature memorials. The difference is in the size and complexity of the design — not in the quality of the material or the care taken in production.
 
@@ -148,7 +148,7 @@ Every headstone in this range can be personalised with the name, dates, and a sh
   exclusive: {
     metaTitle: "Custom Engraved Tombstones South Africa",
     metaDescription:
-      "Bespoke granite tombstones from the Exclusive range. 18 one-of-a-kind memorial designs with custom materials and exceptional craftsmanship. Each memorial as unique as the life it celebrates.",
+      "Bespoke granite memorials from the Exclusive range. 18 one-of-a-kind memorial designs with custom materials and exceptional craftsmanship. Each memorial as unique as the life it celebrates.",
     longDescription: `The Exclusive range is for families who want a memorial that is truly one of a kind. With 18 designs that serve as starting points rather than fixed templates, this collection represents the pinnacle of what our workshops can produce — bespoke memorials crafted to your exact specifications.
 
 Every Exclusive tombstone begins with a conversation. Our design team sits down with you to understand the person being remembered — their personality, their passions, their story. From there, we develop a concept that translates those qualities into stone. This might mean a non-standard shape, an unusual granite colour, a combination of materials, or an elaborate engraving that tells a visual story. Nothing is off the table.
@@ -187,9 +187,9 @@ If you are looking for a memorial that stands apart — something that captures 
   },
 
   baby: {
-    metaTitle: "Baby Headstones KZN",
+    metaTitle: "Baby Tombstones KZN",
     metaDescription:
-      "Gentle, dignified baby memorial headstones from R2,800. 17 designs crafted with care and sensitivity for the smallest lives. Available across KwaZulu-Natal.",
+      "Gentle, dignified baby memorials. 17 designs crafted with care and sensitivity for the smallest lives. Available across KwaZulu-Natal.",
     longDescription: `Losing a baby is one of the most profound griefs a family can experience. The Baby range was created with this understanding at its heart — every design, every material choice, and every detail is guided by sensitivity, gentleness, and respect for the smallest lives.
 
 Our Baby range offers 17 designs, each proportioned for infant and child memorials. Available in two sizes — 400x250mm and 600x350mm — these headstones are scaled to suit the smaller grave plots typically allocated in infant sections of cemeteries. Despite their smaller dimensions, they carry the same quality of granite, the same precision of engraving, and the same attention to finishing as our full-size ranges.
@@ -198,7 +198,7 @@ The designs in this collection reflect the tenderness that families feel. You wi
 
 Covering options include Head and Base for a simple, classic presentation, and Kerbs and Chips for families who wish to define and decorate the grave area. Both options are designed to be low-maintenance, so the memorial remains neat and presentable over time without requiring frequent attention.
 
-Priced from R2,800, the Baby range is deliberately accessible. We never want cost to be a barrier for a family that needs to honour their child. Payment plans are available for families who need to spread the cost, and our team will handle every detail with discretion and compassion.
+The Baby range is deliberately accessible. We never want cost to be a barrier for a family that needs to honour their child. Payment plans are available for families who need to spread the cost, and our team will handle every detail with discretion and compassion.
 
 Personalisation is included in every Baby memorial. We engrave the child's name, dates, and a short inscription at no additional cost. Families often choose a brief verse, a line of poetry, or a simple phrase that captures what their child means to them. Laser-etched portraits and custom motifs are also available.
 
@@ -279,7 +279,7 @@ export default async function RangePage({
         data={productSchema(
           `${range.name} Range — Pullen's Tombstones`,
           range.description,
-          range.priceRange
+          range.budgetTier
         )}
       />
       <JsonLd data={faqPageSchema(content.faqs)} />
@@ -300,8 +300,8 @@ export default async function RangePage({
         <p className="text-lg text-charcoal/80 max-w-2xl mb-2">
           {range.description}
         </p>
-        <p className="text-xl font-semibold text-navy">
-          {range.priceRange}
+        <p className="text-sm font-semibold text-orange uppercase tracking-wide">
+          {range.budgetTier}
         </p>
 
         <div className="mt-4 flex flex-wrap gap-2">

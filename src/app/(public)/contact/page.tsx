@@ -9,9 +9,9 @@ import { localBusinessSchema, breadcrumbSchema } from "@/components/seo/schemas"
 
 export const metadata: Metadata = {
   title:
-    "Contact Us — Showrooms in Pietermaritzburg & Pinetown | Pullen's Tombstones",
+    "Contact Us — Showrooms in PMB, Pinetown & Ladysmith | Pullen's Tombstones",
   description:
-    "Visit our tombstone showrooms in Pietermaritzburg and Pinetown. WhatsApp us for a free quote. Open Mon-Fri 08:00-17:00, Sat 08:00-13:00.",
+    "Visit our tombstone showrooms in Pietermaritzburg, Pinetown, and Ladysmith. WhatsApp us for a free quote. Open Mon-Fri 08:00-17:00, Sat 08:00-13:00.",
 };
 
 function mapsEmbedUrl(address: string) {
@@ -39,7 +39,7 @@ export default function ContactPage() {
         </h1>
         <p className="text-lg text-charcoal/80 max-w-2xl mx-auto text-center mb-12">
           Walk in and see our full range of granite tombstones and memorials.
-          Our teams in Pietermaritzburg and Pinetown are ready to help you
+          Our teams across KwaZulu-Natal are ready to help you
           find the perfect tribute.
         </p>
 
@@ -58,6 +58,11 @@ export default function ContactPage() {
                     {loc.name}
                   </h2>
                   <span className="text-sm text-charcoal/60">{loc.type}</span>
+                  {loc.status === "opening-soon" && (
+                    <span className="ml-2 text-xs font-semibold text-orange bg-orange/10 px-2 py-0.5 rounded-full">
+                      Opening Soon
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -67,48 +72,58 @@ export default function ContactPage() {
                 <p className="text-sm text-charcoal/80">{loc.address}</p>
               </div>
 
-              {/* Phone */}
-              <div className="flex items-center gap-3 mb-3">
-                <Phone className="h-5 w-5 text-orange shrink-0" />
-                <a
-                  href={`tel:${loc.phone.replace(/\s/g, "")}`}
-                  className="text-sm font-semibold text-navy hover:text-orange transition-colors min-h-[48px] flex items-center"
-                >
-                  {loc.phone}
-                </a>
-              </div>
+              {loc.status === "open" && (
+                <>
+                  {/* Phone */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <Phone className="h-5 w-5 text-orange shrink-0" />
+                    <a
+                      href={`tel:${loc.phone.replace(/\s/g, "")}`}
+                      className="text-sm font-semibold text-navy hover:text-orange transition-colors min-h-[48px] flex items-center"
+                    >
+                      {loc.phone}
+                    </a>
+                  </div>
 
-              {/* Hours */}
-              <div className="flex items-center gap-3 mb-5">
-                <Clock className="h-5 w-5 text-orange shrink-0" />
-                <p className="text-sm text-charcoal/80">{loc.hours}</p>
-              </div>
+                  {/* Hours */}
+                  <div className="flex items-center gap-3 mb-5">
+                    <Clock className="h-5 w-5 text-orange shrink-0" />
+                    <p className="text-sm text-charcoal/80">{loc.hours}</p>
+                  </div>
 
-              {/* WhatsApp button */}
-              <Button
-                variant="whatsapp"
-                href={whatsappLink(
-                  loc.whatsapp,
-                  `Hi, I'd like a quote from your ${loc.shortName} branch.`
-                )}
-                className="w-full mb-6"
-              >
-                WhatsApp {loc.whatsappDisplay}
-              </Button>
+                  {/* WhatsApp button */}
+                  <Button
+                    variant="whatsapp"
+                    href={whatsappLink(
+                      loc.whatsapp,
+                      `Hi, I'd like a quote from your ${loc.shortName} branch.`
+                    )}
+                    className="w-full mb-6"
+                  >
+                    WhatsApp {loc.whatsappDisplay}
+                  </Button>
 
-              {/* Google Maps embed */}
-              <div className="rounded-lg overflow-hidden aspect-[4/3]">
-                <iframe
-                  title={`Map — ${loc.name}`}
-                  src={mapsEmbedUrl(loc.address)}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
+                  {/* Google Maps embed */}
+                  <div className="rounded-lg overflow-hidden aspect-[4/3]">
+                    <iframe
+                      title={`Map — ${loc.name}`}
+                      src={mapsEmbedUrl(loc.address)}
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                  </div>
+                </>
+              )}
+
+              {loc.status === "opening-soon" && (
+                <p className="text-sm text-charcoal/60 mt-2">
+                  Details coming soon. WhatsApp us for updates.
+                </p>
+              )}
             </div>
           ))}
         </div>

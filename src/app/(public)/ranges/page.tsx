@@ -6,9 +6,9 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbSchema } from "@/components/seo/schemas";
 
 export const metadata: Metadata = {
-  title: "Tombstone Ranges & Prices | Pullen's Tombstones",
+  title: "Tombstone Ranges | Pullen's Tombstones",
   description:
-    "Browse our 5 granite tombstone ranges — from affordable memorials starting at R2,800 to bespoke Exclusive designs. Over 140 designs across Prestige, Signature, More for Less, Exclusive, and Baby ranges.",
+    "Browse our 5 granite tombstone ranges — from affordable memorials to bespoke Exclusive designs. Over 140 designs across Prestige, Signature, More for Less, Exclusive, and Baby ranges.",
 };
 
 export default function RangesPage() {
@@ -46,7 +46,7 @@ export default function RangesPage() {
               </h2>
               <p className="text-sm text-charcoal/70 mb-3">{range.description}</p>
               <div className="flex items-center justify-between text-sm">
-                <span className="font-semibold text-navy">{range.priceRange}</span>
+                <span className="font-semibold text-navy">{range.budgetTier}</span>
                 <span className="text-orange font-bold group-hover:translate-x-1 transition-transform">
                   View designs &rarr;
                 </span>

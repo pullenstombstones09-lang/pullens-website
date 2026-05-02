@@ -1,5 +1,7 @@
 export type RangeSlug = "prestige" | "signature" | "more-for-less" | "exclusive" | "baby";
 
+export type BudgetTier = "Affordable" | "Mid-range" | "Premium" | "Bespoke";
+
 export interface CatalogueItem {
   code: string;
   range: RangeSlug;
@@ -14,7 +16,7 @@ export interface RangeInfo {
   dirName: string;
   description: string;
   sizes: string;
-  priceRange: string;
+  budgetTier: BudgetTier;
   targetCustomer: string;
   coveringTypes: string[];
 }

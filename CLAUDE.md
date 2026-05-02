@@ -32,9 +32,9 @@ Public-facing website for Pullen's Tombstones, replacing the WordPress at pullen
 | Live domain | pullenstombstones.co.za (DNS transfer when ready) |
 | Staging | pullens-website.vercel.app (not yet deployed) |
 
-## Status — 1 May 2026
+## Status — 2 May 2026
 
-### DONE (this session)
+### DONE
 - [x] Task 1: Brand foundation — fonts (Lora + Inter), colours, layout shell, header, footer, WhatsApp bar
 - [x] Task 2: SEO infrastructure — JSON-LD (LocalBusiness, Product, FAQ, Breadcrumb, Organization), Meta Pixel, GA4
 - [x] Task 3: Catalogue data layer — types, manifest, 5 ranges with metadata
@@ -46,20 +46,23 @@ Public-facing website for Pullen's Tombstones, replacing the WordPress at pullen
 - [x] Task 9: About page — heritage story, stats, craft section, locations
 - [x] Task 10: Specials page — May 2026 deals, price grid, payment plans
 - [x] Task 11: Pinetown page — local landing page for Durban/Pinetown
+- [x] Task 12: Playwright test suite — 18 tests (navigation, SEO, mobile), all passing
+- [x] Task 13: Pushed to GitHub (pullenstombstones09-lang/pullens-website)
+- [x] Blog pages — /blog index + 3 articles (how-to-choose, inscription-ideas, covering-types)
+- [x] PWA manifest.json + OG metadata + robots.txt + dynamic sitemap.ts
 
 ### NOT YET DONE
-- [ ] Task 12: Playwright test suite
-- [ ] Task 13: Deploy to Vercel (push to GitHub, connect, set env vars)
+- [ ] Deploy to Vercel (connect repo, set env vars, assign domain)
 - [ ] Task 14: Copy catalogue images (batch pipeline partially done — 36/141 processed)
 - [ ] Review all pages visually in browser
-- [ ] Blog pages (/blog/how-to-choose-tombstone, /blog/inscription-ideas, /blog/covering-types-explained)
-- [ ] Track/[ref] order tracking page
-- [ ] Designer tool page
-- [ ] Design/[id] family sharing page
-- [ ] PWA manifest + service worker
+- [ ] Track/[ref] order tracking page (future)
+- [ ] Designer tool page (future)
+- [ ] Design/[id] family sharing page (future)
+- [ ] Service worker for offline (future)
 - [ ] Lora font woff2 files in /public/fonts/ (currently using next/font/google)
 - [ ] Logo SVG file
-- [ ] OG image
+- [ ] OG image (actual graphic — placeholder metadata in place)
+- [ ] Design polish pass (user noted style is bland — revisit after functional completion)
 
 ### IMAGE PIPELINE
 - Replicate API token active (account "annika catalogue")

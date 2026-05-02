@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Tombstone Guides & Advice",
   description:
-    "Expert guidance on choosing tombstones, inscriptions, covering types, and more from Pullen's Tombstones — KZN's most trusted memorial manufacturer.",
+    "Expert guidance on choosing tombstones, inscriptions, covering types, and more from Pullen's Tombstones — KZN's most trusted tombstone manufacturer.",
   alternates: { canonical: "https://pullenstombstones.co.za/blog" },
 };
 
