@@ -76,10 +76,9 @@ export function TombstoneScene({ design, covering, angle }: TombstoneSceneProps)
         {showKerbs && <KerbMesh spec={design.kerbs} scale={SCALE} />}
         {showKerbs && <CoveringMesh covering={covering} kerbs={design.kerbs} scale={SCALE} />}
 
-        {/* Base + headstone image at the HEAD end */}
+        {/* Headstone image at the HEAD end — sits on top of kerbs/slab */}
         <group position={[0, 0, -(design.kerbs.outer_depth_mm / 2 - design.base.depth_mm) * SCALE]}>
-          <BaseMesh spec={design.base} scale={SCALE} yOffset={showKerbs ? design.kerbs.height_mm : 0} />
-          <group position={[0, headstoneY, 0]}>
+          <group position={[0, showKerbs ? design.kerbs.height_mm * SCALE : 0, 0]}>
             <HeadstoneMesh
               imagePath={design.headstoneImage}
               width={design.headstone.width_mm * SCALE}
