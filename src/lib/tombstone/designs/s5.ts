@@ -11,7 +11,7 @@ export const S5_DESIGN: DesignManifest = {
   code: "S5",
   range: "signature",
   name: "S5 Design",
-  headstoneImage: "/catalogue/faces/S5.png",
+  headstoneImage: "/catalogue/models/S5.glb",
   headstoneHeight_mm: 1400,
   headstone: {
     // Main panel is a tall rectangle. Heart shape handled via curvePoints in profiles.ts

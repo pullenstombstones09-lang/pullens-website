@@ -6,24 +6,21 @@ import { Environment } from "@react-three/drei";
 import * as THREE from "three";
 import type { DesignManifest, CoveringType, CameraAngle, CameraPreset } from "@/lib/tombstone/types";
 import { HeadstoneMesh } from "./headstone-mesh";
-import { BaseMesh } from "./base-mesh";
-import { KerbMesh } from "./kerb-mesh";
-import { CoveringMesh } from "./covering-mesh";
 
 const CAMERA_PRESETS: Record<CameraAngle, CameraPreset> = {
   front: {
-    position: [0, 4, 10],
-    target: [0, 2, -1],
+    position: [0, 2.5, 5],
+    target: [0, 1.2, 0],
     label: "Front",
   },
   "three-quarter-left": {
-    position: [-7, 4.5, 8],
-    target: [0, 1.5, -1],
+    position: [-3.5, 2.5, 4],
+    target: [0, 1, 0],
     label: "Left",
   },
   "three-quarter-right": {
-    position: [7, 4.5, 8],
-    target: [0, 1.5, -1],
+    position: [3.5, 2.5, 4],
+    target: [0, 1, 0],
     label: "Right",
   },
 };
@@ -34,8 +31,6 @@ interface TombstoneSceneProps {
   angle: CameraAngle;
 }
 
-const SCALE = 1 / 150;
-
 export function TombstoneScene({ design, covering, angle }: TombstoneSceneProps) {
   const { camera } = useThree();
   const groupRef = useRef<THREE.Group>(null);
@@ -43,10 +38,6 @@ export function TombstoneScene({ design, covering, angle }: TombstoneSceneProps)
   const preset = CAMERA_PRESETS[angle];
   camera.position.set(...preset.position);
   (camera as THREE.PerspectiveCamera).lookAt(new THREE.Vector3(...preset.target));
-
-  const showKerbs = covering !== "head-base";
-  const baseY = showKerbs ? design.kerbs.height_mm * SCALE : 0;
-  const headstoneY = baseY + design.base.height_mm * SCALE;
 
   return (
     <>
@@ -71,21 +62,9 @@ export function TombstoneScene({ design, covering, angle }: TombstoneSceneProps)
         <meshStandardMaterial color="#f0ede6" roughness={0.95} />
       </mesh>
 
+      {/* 3D tombstone model from Meshy AI */}
       <group ref={groupRef}>
-        {/* Kerbs and covering */}
-        {showKerbs && <KerbMesh spec={design.kerbs} scale={SCALE} />}
-        {showKerbs && <CoveringMesh covering={covering} kerbs={design.kerbs} scale={SCALE} />}
-
-        {/* Headstone image at the HEAD end — sits on top of kerbs/slab */}
-        <group position={[0, 0, -(design.kerbs.outer_depth_mm / 2 - design.base.depth_mm) * SCALE]}>
-          <group position={[0, showKerbs ? design.kerbs.height_mm * SCALE : 0, 0]}>
-            <HeadstoneMesh
-              imagePath={design.headstoneImage}
-              width={design.headstone.width_mm * SCALE}
-              height={design.headstoneHeight_mm * SCALE}
-            />
-          </group>
-        </group>
+        <HeadstoneMesh modelPath={design.headstoneImage} scale={1.5} />
       </group>
     </>
   );
