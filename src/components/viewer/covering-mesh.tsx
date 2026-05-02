@@ -141,7 +141,7 @@ export function CoveringMesh({ covering, kerbs, scale }: CoveringMeshProps) {
   }, [covering, innerWidth, innerDepth]);
 
   if (covering === "kerbs-slab") {
-    // Solid granite slab — sits above kerb top level
+    // Solid granite slab — sits above kerb top, slightly inset to avoid z-fighting
     return (
       <mesh
         position={[0, (kerbs.height_mm + 25) * s, 0]}
@@ -149,7 +149,7 @@ export function CoveringMesh({ covering, kerbs, scale }: CoveringMeshProps) {
         receiveShadow
         castShadow
       >
-        <boxGeometry args={[innerWidth, 40, innerDepth]} />
+        <boxGeometry args={[innerWidth - 4, 40, innerDepth - 4]} />
         <GraniteMaterial roughnessOverride={0.15} />
       </mesh>
     );
