@@ -9,18 +9,18 @@ import { HeadstoneMesh } from "./headstone-mesh";
 
 const CAMERA_PRESETS: Record<CameraAngle, CameraPreset> = {
   front: {
-    position: [0, 2.5, 5],
-    target: [0, 1.2, 0],
+    position: [0, 3, 6],
+    target: [0, 1.5, 0],
     label: "Front",
   },
   "three-quarter-left": {
-    position: [-3.5, 2.5, 4],
-    target: [0, 1, 0],
+    position: [-4, 3, 5],
+    target: [0, 1.5, 0],
     label: "Left",
   },
   "three-quarter-right": {
-    position: [3.5, 2.5, 4],
-    target: [0, 1, 0],
+    position: [4, 3, 5],
+    target: [0, 1.5, 0],
     label: "Right",
   },
 };
@@ -64,7 +64,7 @@ export function TombstoneScene({ design, covering, angle }: TombstoneSceneProps)
 
       {/* 3D tombstone model from Meshy AI */}
       <group ref={groupRef}>
-        <HeadstoneMesh modelPath={design.headstoneImage} scale={1.5} />
+        <HeadstoneMesh modelPath={design.headstoneImage} scale={4} />
       </group>
     </>
   );
