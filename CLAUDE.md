@@ -51,17 +51,33 @@ Public-facing website for Pullen's Tombstones, replacing the WordPress at pullen
 - [x] Blog pages — /blog index + 3 articles (how-to-choose, inscription-ideas, covering-types)
 - [x] PWA manifest.json + OG metadata + robots.txt + dynamic sitemap.ts
 
+### DONE (2 May session)
+- [x] Deployed to Vercel — pullens-website.vercel.app
+- [x] Prices removed from all pages — replaced with budget tiers
+- [x] Church Street showroom (557 Church St) + Ladysmith (opening soon) added
+- [x] "tombstone" kept throughout (not "memorial")
+- [x] Sizes removed from range page copy
+- [x] Three.js viewer prototype built — covering type toggle works (kerbs, chips, tiles, slab)
+- [x] Meshy AI (via fal.ai) generates 3D GLB model from product image — S5 model generated
+- [x] Image protection system (no right-click, no print, canvas-based)
+
+### IN PROGRESS — 3D Catalogue Viewer
+- [ ] **Fix GLB model scaling/camera in Three.js viewer** — model loads but too small, camera framing wrong
+- [ ] Batch-generate GLB models for all 142 designs via fal.ai Meshy API
+- [ ] Integrate covering type toggle with GLB headstone models
+- [ ] Design spec: docs/superpowers/specs/2026-05-02-3d-catalogue-system-design.md
+- [ ] fal.ai key: 2b052710-1bd4-4924-bdd2-5fc2cbd70aca:a86bf2eb3a44f4971955c72fd5ae0cdd
+
 ### NOT YET DONE
-- [ ] Deploy to Vercel (connect repo, set env vars, assign domain)
-- [ ] Task 14: Copy catalogue images (batch pipeline partially done — 36/141 processed)
 - [ ] Review all pages visually in browser
 - [ ] Track/[ref] order tracking page (future)
 - [ ] Designer tool page (future)
 - [ ] Design/[id] family sharing page (future)
 - [ ] Service worker for offline (future)
-- [ ] Lora font woff2 files in /public/fonts/ (currently using next/font/google)
-- [ ] Logo SVG file
+- [ ] Logo SVG file (have SVGs at F:\Pullens Artwork\Logos SVG\)
 - [ ] OG image (actual graphic — placeholder metadata in place)
+- [ ] Brand kit refresh (Fraunces + Inter + deep brass — parked, see BRAND_KIT_2026.md)
+- [ ] Hero videos (2-3 videos, next 2 weeks)
 - [ ] Design polish pass (user noted style is bland — revisit after functional completion)
 
 ### IMAGE PIPELINE
