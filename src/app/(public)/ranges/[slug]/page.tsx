@@ -34,14 +34,14 @@ const RANGE_CONTENT: Record<string, RangeContent> = {
   prestige: {
     metaTitle: "Prestige Granite Tombstones",
     metaDescription:
-      "Browse 62 Prestige granite memorial designs. Premium granite memorials in multiple sizes and covering types. South Africa's most popular memorial range.",
-    longDescription: `The Prestige range is the most popular collection in our catalogue, and for good reason. With 62 individual designs to choose from, it offers the widest variety of any range we produce — giving families the freedom to find a memorial that truly resonates with their vision.
+      "Browse 62 Prestige granite tombstone designs. Premium granite tombstones in multiple sizes and covering types. South Africa's most popular tombstone range.",
+    longDescription: `The Prestige range is the most popular collection in our catalogue, and for good reason. With 62 individual designs to choose from, it offers the widest variety of any range we produce — giving families the freedom to find a tombstone that truly resonates with their vision.
 
-Every Prestige headstone is manufactured from premium-grade granite sourced for its density, colour consistency, and long-term durability. Granite is a natural igneous rock that withstands the harsh South African climate — from the subtropical humidity of KwaZulu-Natal to the frost of the inland highveld — without cracking, fading, or deteriorating. A Prestige memorial installed today will look just as dignified in fifty years.
+Every Prestige headstone is manufactured from premium-grade granite sourced for its density, colour consistency, and long-term durability. Granite is a natural igneous rock that withstands the harsh South African climate — from the subtropical humidity of KwaZulu-Natal to the frost of the inland highveld — without cracking, fading, or deteriorating. A Prestige tombstone installed today will look just as dignified in fifty years.
 
 The range covers three standard headstone sizes — 700x400mm, 900x500mm, and 1200x600mm — so whether the grave site is a single plot in a municipal cemetery or a larger family plot, there is a Prestige design that fits. Covering options span all four types we offer: Head and Base for a clean, classic look; Kerbs and Chips for a defined border with decorative stone infill; Tiles for a polished, low-maintenance surface; and Kerbs and Slab for a solid granite platform that makes a bold statement.
 
-What sets the Prestige range apart is the balance it strikes between craftsmanship and value. These are not entry-level memorials — they feature detailed engravings, polished edges, and thoughtful proportions — yet they sit at a mid-range budget that most families find comfortable. A Prestige memorial delivers quality that rivals more expensive ranges without the premium price tag.
+What sets the Prestige range apart is the balance it strikes between craftsmanship and value. These are not entry-level tombstones — they feature detailed engravings, polished edges, and thoughtful proportions — yet they sit at a mid-range budget that most families find comfortable. A Prestige tombstone delivers quality that rivals more expensive ranges without the premium price tag.
 
 If you are unsure which range is right for you, the Prestige collection is an excellent place to start. Its breadth of design means you are likely to find something close to what you have in mind, and our team can personalise any design with custom inscriptions, portraits, and decorative elements.`,
     faqs: [
@@ -71,23 +71,23 @@ If you are unsure which range is right for you, the Prestige collection is an ex
   signature: {
     metaTitle: "Signature Granite Tombstones",
     metaDescription:
-      "Explore 37 Signature memorial designs. Larger granite memorials with intricate detail and premium craftsmanship for families who want something exceptional.",
-    longDescription: `The Signature range is designed for families who want their memorial to make a lasting impression. With 37 carefully curated designs, this collection represents the upper tier of our standard catalogue — larger headstones, more intricate detailing, and a level of craftsmanship that speaks for itself.
+      "Explore 37 Signature tombstone designs. Larger granite tombstones with intricate detail and premium craftsmanship for families who want something exceptional.",
+    longDescription: `The Signature range is designed for families who want their tombstone to make a lasting impression. With 37 carefully curated designs, this collection represents the upper tier of our standard catalogue — larger headstones, more intricate detailing, and a level of craftsmanship that speaks for itself.
 
-Each Signature memorial starts with a block of premium granite, hand-selected for consistent colour and minimal veining. Our craftsmen then shape, polish, and engrave every piece in our Pietermaritzburg and Pinetown factories, using a combination of diamond-tipped cutting tools and precision laser engraving. The result is a headstone with crisp lines, mirror-polished surfaces, and engravings that remain sharp and legible for generations.
+Each Signature tombstone starts with a block of premium granite, hand-selected for consistent colour and minimal veining. Our craftsmen then shape, polish, and engrave every piece in our Pietermaritzburg and Pinetown factories, using a combination of diamond-tipped cutting tools and precision laser engraving. The result is a headstone with crisp lines, mirror-polished surfaces, and engravings that remain sharp and legible for generations.
 
-Signature headstones are available in three sizes — 900x500mm, 1200x600mm, and the imposing 1500x700mm — making them suitable for both standard and larger family plots. The scale of these memorials allows for more elaborate design elements: curved tops, shaped wings, multi-level bases, and generous inscription panels that can accommodate longer tributes, multiple names, or decorative motifs.
+Signature headstones are available in three sizes — 900x500mm, 1200x600mm, and the imposing 1500x700mm — making them suitable for both standard and larger family plots. The scale of these tombstones allows for more elaborate design elements: curved tops, shaped wings, multi-level bases, and generous inscription panels that can accommodate longer tributes, multiple names, or decorative motifs.
 
 Covering options for the Signature range include Kerbs and Chips, Tiles, and Kerbs and Slab. These higher-end covering types complement the premium nature of the headstone and create a cohesive, polished look across the entire grave site. Many families choose the Kerbs and Slab option for its clean lines and the sense of permanence it conveys.
 
-The Signature range is an investment in a memorial that will stand as a testament to a life well lived. Every detail — from the weight of the granite to the depth of the engraving — is considered. If you are looking for a memorial that goes beyond the ordinary, this is the range to explore.
+The Signature range is an investment in a tombstone that will stand as a testament to a life well lived. Every detail — from the weight of the granite to the depth of the engraving — is considered. If you are looking for a tombstone that goes beyond the ordinary, this is the range to explore.
 
 Our consultants can guide you through the full Signature collection, help you select the right granite colour and finish, and work with you on a personalised design that captures exactly what you want to say.`,
     faqs: [
       {
         question: "What makes the Signature range different from Prestige?",
         answer:
-          "Signature headstones are larger, feature more intricate design work, and use premium-grade granite. They are intended for families who want an exceptional memorial with greater visual impact and finer craftsmanship.",
+          "Signature headstones are larger, feature more intricate design work, and use premium-grade granite. They are intended for families who want an exceptional tombstone with greater visual impact and finer craftsmanship.",
       },
       {
         question: "Can I get a Signature headstone in a custom granite colour?",
@@ -97,10 +97,10 @@ Our consultants can guide you through the full Signature collection, help you se
       {
         question: "Is installation included in the price?",
         answer:
-          "Installation is quoted separately as costs vary by cemetery location and access conditions. Our team handles all installation logistics and ensures the memorial is secured to the correct standard.",
+          "Installation is quoted separately as costs vary by cemetery location and access conditions. Our team handles all installation logistics and ensures the tombstone is secured to the correct standard.",
       },
       {
-        question: "Do you offer a payment plan for Signature memorials?",
+        question: "Do you offer a payment plan for Signature tombstones?",
         answer:
           "Yes. We offer flexible payment plans that allow you to spread the cost over several months. Speak to one of our consultants for details tailored to your budget.",
       },
@@ -110,16 +110,16 @@ Our consultants can guide you through the full Signature collection, help you se
   "more-for-less": {
     metaTitle: "Affordable Tombstones South Africa",
     metaDescription:
-      "Quality granite memorials in the More for Less range. 7 affordable memorial designs that prove honouring your loved one doesn't have to cost a fortune.",
-    longDescription: `The More for Less range exists because we believe every family deserves a dignified memorial, regardless of budget. With 7 thoughtfully designed options, this range delivers genuine quality granite craftsmanship at the most accessible price point in our catalogue.
+      "Quality granite tombstones in the More for Less range. 7 affordable tombstone designs that prove honouring your loved one doesn't have to cost a fortune.",
+    longDescription: `The More for Less range exists because we believe every family deserves a dignified tombstone, regardless of budget. With 7 thoughtfully designed options, this range delivers genuine quality granite craftsmanship at the most accessible price point in our catalogue.
 
-These are not inferior products. Every More for Less headstone is manufactured from the same grade of natural granite used across our other ranges. The stone is cut, shaped, and polished in our own factories by the same craftsmen who produce our Prestige and Signature memorials. The difference is in the size and complexity of the design — not in the quality of the material or the care taken in production.
+These are not inferior products. Every More for Less headstone is manufactured from the same grade of natural granite used across our other ranges. The stone is cut, shaped, and polished in our own factories by the same craftsmen who produce our Prestige and Signature tombstones. The difference is in the size and complexity of the design — not in the quality of the material or the care taken in production.
 
-Available in two sizes — 600x300mm and 900x300mm — the More for Less range is proportioned for standard single-plot graves in municipal and church cemeteries across KwaZulu-Natal and South Africa. The compact dimensions keep material costs down without compromising the visual dignity of the memorial. These headstones look clean, polished, and respectful — exactly what a memorial should be.
+Available in two sizes — 600x300mm and 900x300mm — the More for Less range is proportioned for standard single-plot graves in municipal and church cemeteries across KwaZulu-Natal and South Africa. The compact dimensions keep material costs down without compromising the visual dignity of the tombstone. These headstones look clean, polished, and respectful — exactly what a tombstone should be.
 
 Covering options include Head and Base for a simple, classic presentation, and Kerbs and Chips for families who want to define the grave perimeter with a neat border and decorative stone chips. Both options are affordable and low-maintenance, ensuring the grave site remains presentable for years to come.
 
-We understand that the cost of a funeral in South Africa can be overwhelming. Between the coffin, the service, catering, and transport, families are often left with little budget for the tombstone. The More for Less range addresses this directly — it gives you a beautiful, permanent memorial at a price that does not add financial strain during an already difficult time.
+We understand that the cost of a funeral in South Africa can be overwhelming. Between the coffin, the service, catering, and transport, families are often left with little budget for the tombstone. The More for Less range addresses this directly — it gives you a beautiful, permanent tombstone at a price that does not add financial strain during an already difficult time.
 
 Every headstone in this range can be personalised with the name, dates, and a short inscription of your choice. Laser-etched portraits are also available as an optional add-on. Our team will help you choose a design and work within your budget to create something meaningful.`,
     faqs: [
@@ -131,7 +131,7 @@ Every headstone in this range can be personalised with the name, dates, and a sh
       {
         question: "What is the smallest tombstone you offer?",
         answer:
-          "The smallest option in the More for Less range is 600x300mm. This is well-suited to standard single-plot graves and provides a clean, dignified memorial.",
+          "The smallest option in the More for Less range is 600x300mm. This is well-suited to standard single-plot graves and provides a clean, dignified tombstone.",
       },
       {
         question: "Can I add a photo to a More for Less headstone?",
@@ -149,8 +149,8 @@ Every headstone in this range can be personalised with the name, dates, and a sh
   exclusive: {
     metaTitle: "Custom Engraved Tombstones South Africa",
     metaDescription:
-      "Bespoke granite memorials from the Exclusive range. 18 one-of-a-kind memorial designs with custom materials and exceptional craftsmanship. Each memorial as unique as the life it celebrates.",
-    longDescription: `The Exclusive range is for families who want a memorial that is truly one of a kind. With 18 designs that serve as starting points rather than fixed templates, this collection represents the pinnacle of what our workshops can produce — bespoke memorials crafted to your exact specifications.
+      "Bespoke granite tombstones from the Exclusive range. 18 one-of-a-kind tombstone designs with custom materials and exceptional craftsmanship. Each tombstone as unique as the life it celebrates.",
+    longDescription: `The Exclusive range is for families who want a tombstone that is truly one of a kind. With 18 designs that serve as starting points rather than fixed templates, this collection represents the pinnacle of what our workshops can produce — bespoke tombstones crafted to your exact specifications.
 
 Every Exclusive tombstone begins with a conversation. Our design team sits down with you to understand the person being remembered — their personality, their passions, their story. From there, we develop a concept that translates those qualities into stone. This might mean a non-standard shape, an unusual granite colour, a combination of materials, or an elaborate engraving that tells a visual story. Nothing is off the table.
 
@@ -158,11 +158,11 @@ The granite used in the Exclusive range is hand-selected from our best stock, an
 
 Because every Exclusive memorial is custom, sizes are not fixed. We manufacture to the dimensions that suit your design and the grave site. Covering options include Kerbs and Chips, Tiles, and Kerbs and Slab — and we can also create custom covering solutions that integrate with the headstone design for a unified, architectural look.
 
-Craftsmanship at this level takes time. An Exclusive memorial typically requires 8 to 12 weeks from design approval to installation, depending on complexity and material sourcing. We keep you informed at every stage and welcome your input throughout the process.
+Craftsmanship at this level takes time. An Exclusive tombstone typically requires 8 to 12 weeks from design approval to installation, depending on complexity and material sourcing. We keep you informed at every stage and welcome your input throughout the process.
 
 Pricing for the Exclusive range is by custom quote only, because no two projects are alike. We will provide a detailed written quotation after the initial design consultation so you know exactly what to expect. There are no hidden costs and no surprises.
 
-If you are looking for a memorial that stands apart — something that captures the full measure of a life in granite — the Exclusive range is where that vision becomes reality.`,
+If you are looking for a tombstone that stands apart — something that captures the full measure of a life in granite — the Exclusive range is where that vision becomes reality.`,
     faqs: [
       {
         question: "How does the Exclusive design process work?",
@@ -172,10 +172,10 @@ If you are looking for a memorial that stands apart — something that captures 
       {
         question: "Why is pricing by custom quote only?",
         answer:
-          "Every Exclusive memorial is different — in size, material, design complexity, and finishing. A custom quote ensures you get an accurate price for your specific project rather than a rough estimate.",
+          "Every Exclusive tombstone is different — in size, material, design complexity, and finishing. A custom quote ensures you get an accurate price for your specific project rather than a rough estimate.",
       },
       {
-        question: "Can I combine different granite colours in one memorial?",
+        question: "Can I combine different granite colours in one tombstone?",
         answer:
           "Yes. Multi-colour and multi-material designs are a hallmark of the Exclusive range. We can combine contrasting granites, integrate bronze elements, or incorporate other materials to achieve your vision.",
       },
@@ -314,9 +314,6 @@ export default async function RangePage({
               {ct}
             </span>
           ))}
-          <span className="text-xs font-medium bg-cream text-charcoal/60 px-3 py-1 rounded-full">
-            {range.sizes}
-          </span>
         </div>
       </Section>
 
