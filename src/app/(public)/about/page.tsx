@@ -95,7 +95,7 @@ export default function AboutPage() {
             <strong className="text-charcoal">
               {BRAND.googleRating}-star Google rating
             </strong>{" "}
-            backed by {BRAND.googleReviews} five-star reviews from families
+            backed by {BRAND.googleReviews}{" "}five-star reviews from families
             who trusted us with their loved ones&apos; legacies.
           </p>
           <p>
