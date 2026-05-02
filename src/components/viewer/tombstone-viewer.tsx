@@ -34,7 +34,7 @@ export function TombstoneViewer({
   return (
     <div className="space-y-4">
       <ImageProtection>
-        <div className={`${heightClass} w-full rounded-lg overflow-hidden bg-[#1a1a1a]`}>
+        <div className={`${heightClass} w-full rounded-lg overflow-hidden bg-[#f0ede6]`}>
           <Suspense fallback={<LoadingFallback />}>
             <Canvas
               shadows

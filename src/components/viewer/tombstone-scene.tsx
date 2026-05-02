@@ -65,7 +65,7 @@ export function TombstoneScene({ design, covering, angle }: TombstoneSceneProps)
 
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]} receiveShadow>
         <planeGeometry args={[20, 20]} />
-        <meshStandardMaterial color="#1a1a1a" roughness={0.95} />
+        <meshStandardMaterial color="#f0ede6" roughness={0.95} />
       </mesh>
 
       <group ref={groupRef}>
