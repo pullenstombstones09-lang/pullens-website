@@ -12,18 +12,18 @@ import { CoveringMesh } from "./covering-mesh";
 
 const CAMERA_PRESETS: Record<CameraAngle, CameraPreset> = {
   front: {
-    position: [0, 3, 8],
-    target: [0, 1.5, 0],
+    position: [0, 4, 10],
+    target: [0, 1.5, -1],
     label: "Front",
   },
   "three-quarter-left": {
-    position: [-6, 3.5, 6],
-    target: [0, 1, 0],
+    position: [-7, 4.5, 8],
+    target: [0, 1.2, -1],
     label: "Left",
   },
   "three-quarter-right": {
-    position: [6, 3.5, 6],
-    target: [0, 1, 0],
+    position: [7, 4.5, 8],
+    target: [0, 1.2, -1],
     label: "Right",
   },
 };
@@ -34,7 +34,7 @@ interface TombstoneSceneProps {
   angle: CameraAngle;
 }
 
-const SCALE = 1 / 200;
+const SCALE = 1 / 150;
 
 export function TombstoneScene({ design, covering, angle }: TombstoneSceneProps) {
   const { camera } = useThree();
@@ -50,31 +50,34 @@ export function TombstoneScene({ design, covering, angle }: TombstoneSceneProps)
 
   return (
     <>
-      <ambientLight intensity={0.3} color="#b0c4de" />
+      {/* Brighter, warmer lighting */}
+      <ambientLight intensity={0.5} color="#e8e0d8" />
       <directionalLight
-        position={[5, 8, 4]}
-        intensity={1.2}
-        color="#fff5e6"
+        position={[5, 10, 6]}
+        intensity={1.5}
+        color="#fff8f0"
         castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
       />
-      <directionalLight position={[-3, 4, -2]} intensity={0.4} color="#c0d0e0" />
+      <directionalLight position={[-4, 6, -3]} intensity={0.6} color="#d0d8e8" />
+      {/* Rim light from behind to separate from background */}
+      <directionalLight position={[0, 3, -8]} intensity={0.3} color="#ffffff" />
 
-      <Environment preset="city" environmentIntensity={0.3} />
+      <Environment preset="city" environmentIntensity={0.4} />
 
+      {/* Ground plane */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]} receiveShadow>
-        <planeGeometry args={[20, 20]} />
+        <planeGeometry args={[30, 30]} />
         <meshStandardMaterial color="#f0ede6" roughness={0.95} />
       </mesh>
 
       <group ref={groupRef}>
-        {/* Kerbs and covering centered on grave */}
         {showKerbs && <KerbMesh spec={design.kerbs} scale={SCALE} />}
         {showKerbs && <CoveringMesh covering={covering} kerbs={design.kerbs} scale={SCALE} />}
 
-        {/* Base + headstone at the HEAD end (back/far side of grave) */}
-        <group position={[0, 0, -(design.kerbs.outer_depth_mm / 2 - design.base.depth_mm / 2) * SCALE]}>
+        {/* Base + headstone at the HEAD end */}
+        <group position={[0, 0, -(design.kerbs.outer_depth_mm / 2 - design.base.depth_mm) * SCALE]}>
           <BaseMesh spec={design.base} scale={SCALE} yOffset={showKerbs ? design.kerbs.height_mm : 0} />
           <group position={[0, headstoneY, 0]}>
             <HeadstoneMesh profile={design.headstone} subElements={design.subElements} inscription={design.inscription} scale={SCALE} />

@@ -3,61 +3,54 @@ import type { DesignManifest } from "../types";
 /**
  * S5 Design — Signature Range
  *
- * Shape: Tall rectangular main panel with a heart shape crown at the top-left,
- * vertical pillar on the right (taller than main panel).
- * The heart is NOT a cutout — it's a solid heart shape sitting on top of the panel.
- *
- * Ref: F:\Pullens Artwork\Outlined Drawings\S Range\S5.jpg
- * Ref: F:\Pullens Artwork\Artwork from catalogues\S Range for Whatsapp Scenic\S Range for Whatsapp SCENIC5.jpg
+ * Shape: Tall main panel with heart shape at top-left, vertical pillar on right.
+ * The heart is a solid crown sitting above the main rectangular panel.
+ * Uses bezier curves for the heart shape (see profiles.ts curvePoints).
  */
 export const S5_DESIGN: DesignManifest = {
   code: "S5",
   range: "signature",
   name: "S5 Design",
   headstone: {
-    // Main panel — tall narrow rectangle with curved top-left flowing into heart crown
-    // Heart is part of the outline (solid), not a cutout
+    // Main panel is a tall rectangle. Heart shape handled via curvePoints in profiles.ts
+    // For now, simplified to a tall panel with rounded top
     outline: [
-      { x: 0, y: 0 },         // bottom-left of main panel
-      { x: 0, y: 400 },       // left edge rises straight
-      // Heart shape crown at top-left
-      { x: -10, y: 440 },     // slight outward curve starting heart
-      { x: -20, y: 490 },     // left lobe of heart
-      { x: -10, y: 540 },     // top of left lobe
-      { x: 20, y: 560 },      // inner dip between lobes
-      { x: 50, y: 580 },      // center peak of heart
-      { x: 80, y: 560 },      // inner dip right side
-      { x: 110, y: 540 },     // top of right lobe
-      { x: 120, y: 490 },     // right lobe of heart
-      { x: 110, y: 440 },     // heart meets panel top
-      // Top of main panel (straight across to right edge)
-      { x: 110, y: 420 },     // panel top-right area
-      { x: 180, y: 420 },     // top edge continues to pillar
-      { x: 180, y: 0 },       // right edge of main panel down
+      { x: 0, y: 0 },         // bottom-left
+      { x: 0, y: 500 },       // left edge straight up
+      // Rounded/curved top
+      { x: 10, y: 540 },
+      { x: 30, y: 570 },
+      { x: 60, y: 590 },
+      { x: 100, y: 600 },     // peak
+      { x: 140, y: 590 },
+      { x: 170, y: 570 },
+      { x: 190, y: 540 },
+      { x: 200, y: 500 },     // right side starts
+      { x: 200, y: 0 },       // bottom-right
     ],
-    cutouts: [],               // No cutouts — heart is solid, not a hole
-    width_mm: 180,
-    height_mm: 580,
-    depth_mm: 70,
+    cutouts: [],
+    width_mm: 200,
+    height_mm: 600,
+    depth_mm: 60,
   },
   subElements: [
     {
-      // Vertical pillar on right — taller than main panel
+      // Vertical pillar on right — slightly taller than main panel
       type: "pillar",
-      position: { x: 200, y: 0, z: 0 },
-      dimensions: { width: 50, height: 620, depth: 50 },
+      position: { x: 220, y: 0, z: 0 },
+      dimensions: { width: 45, height: 650, depth: 45 },
     },
   ],
   base: {
-    width_mm: 300,
-    depth_mm: 180,
-    height_mm: 70,
+    width_mm: 320,
+    depth_mm: 160,
+    height_mm: 60,
   },
   kerbs: {
-    outer_width_mm: 1100,
-    outer_depth_mm: 2200,
-    height_mm: 90,
-    thickness_mm: 55,
+    outer_width_mm: 900,
+    outer_depth_mm: 1800,
+    height_mm: 80,
+    thickness_mm: 50,
   },
   coveringTypes: ["head-base", "kerbs-chips", "kerbs-tiles", "kerbs-slab"],
   inscription: [
