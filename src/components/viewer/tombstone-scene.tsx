@@ -77,7 +77,7 @@ export function TombstoneScene({ design, covering, angle }: TombstoneSceneProps)
         <group position={[0, 0, -(design.kerbs.outer_depth_mm / 2 - design.base.depth_mm / 2) * SCALE]}>
           <BaseMesh spec={design.base} scale={SCALE} yOffset={showKerbs ? design.kerbs.height_mm : 0} />
           <group position={[0, headstoneY, 0]}>
-            <HeadstoneMesh profile={design.headstone} subElements={design.subElements} scale={SCALE} />
+            <HeadstoneMesh profile={design.headstone} subElements={design.subElements} inscription={design.inscription} scale={SCALE} />
           </group>
         </group>
       </group>
