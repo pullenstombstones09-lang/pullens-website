@@ -141,15 +141,15 @@ export function CoveringMesh({ covering, kerbs, scale }: CoveringMeshProps) {
   }, [covering, innerWidth, innerDepth]);
 
   if (covering === "kerbs-slab") {
-    // Solid granite slab — raised to sit flush with top of kerbs
+    // Solid granite slab — sits above kerb top level
     return (
       <mesh
-        position={[0, (kerbs.height_mm + 15) * s, 0]}
+        position={[0, (kerbs.height_mm + 25) * s, 0]}
         scale={[s, s, s]}
         receiveShadow
         castShadow
       >
-        <boxGeometry args={[innerWidth, 30, innerDepth]} />
+        <boxGeometry args={[innerWidth, 40, innerDepth]} />
         <GraniteMaterial roughnessOverride={0.15} />
       </mesh>
     );
@@ -158,7 +158,7 @@ export function CoveringMesh({ covering, kerbs, scale }: CoveringMeshProps) {
   if (covering === "kerbs-tiles" && tileTexture) {
     return (
       <mesh
-        position={[0, (kerbs.height_mm * 0.5) * s, 0]}
+        position={[0, (kerbs.height_mm) * s, 0]}
         scale={[s, s, s]}
         receiveShadow
       >
@@ -173,10 +173,10 @@ export function CoveringMesh({ covering, kerbs, scale }: CoveringMeshProps) {
   }
 
   if (covering === "kerbs-chips" && chipsTexture) {
-    // Gravelly stone chips — textured surface
+    // Gravelly stone chips — flush with kerb top
     return (
       <mesh
-        position={[0, (kerbs.height_mm * 0.3) * s, 0]}
+        position={[0, (kerbs.height_mm) * s, 0]}
         scale={[s, s, s]}
         receiveShadow
       >
@@ -193,7 +193,7 @@ export function CoveringMesh({ covering, kerbs, scale }: CoveringMeshProps) {
   // Fallback for SSR
   if (covering === "kerbs-tiles") {
     return (
-      <mesh position={[0, (kerbs.height_mm * 0.5) * s, 0]} scale={[s, s, s]} receiveShadow>
+      <mesh position={[0, (kerbs.height_mm) * s, 0]} scale={[s, s, s]} receiveShadow>
         <boxGeometry args={[innerWidth, 15, innerDepth]} />
         <meshStandardMaterial color="#4a4a4a" roughness={0.6} metalness={0} />
       </mesh>
@@ -202,7 +202,7 @@ export function CoveringMesh({ covering, kerbs, scale }: CoveringMeshProps) {
 
   if (covering === "kerbs-chips") {
     return (
-      <mesh position={[0, (kerbs.height_mm * 0.3) * s, 0]} scale={[s, s, s]} receiveShadow>
+      <mesh position={[0, (kerbs.height_mm) * s, 0]} scale={[s, s, s]} receiveShadow>
         <boxGeometry args={[innerWidth, 8, innerDepth]} />
         <meshStandardMaterial color="#8a8a8a" roughness={0.95} metalness={0} />
       </mesh>
