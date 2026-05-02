@@ -21,6 +21,28 @@ export const metadata: Metadata = {
   },
   description:
     "KwaZulu-Natal's most trusted tombstone manufacturer since 1982. Over 22,000 memorials installed across South Africa.",
+  metadataBase: new URL("https://pullenstombstones.co.za"),
+  manifest: "/manifest.json",
+  openGraph: {
+    type: "website",
+    locale: "en_ZA",
+    siteName: "Pullen's Tombstones",
+    title: "Pullen's Tombstones — Cast in Stone Since 1982",
+    description:
+      "KwaZulu-Natal's most trusted tombstone manufacturer since 1982. Over 22,000 memorials installed.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pullen's Tombstones — Cast in Stone Since 1982",
+    description:
+      "KwaZulu-Natal's most trusted tombstone manufacturer since 1982.",
+    images: ["/og-image.png"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/icon-192.png",
+  },
 };
 
 export default function RootLayout({

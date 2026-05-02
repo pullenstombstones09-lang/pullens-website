@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { href: "/contact", label: "Contact" },
   { href: "/faq", label: "FAQ" },
   { href: "/specials", label: "Specials" },
+  { href: "/blog", label: "Guides" },
 ] as const;
 
 const pmb = LOCATIONS[0];
