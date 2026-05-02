@@ -37,3 +37,17 @@ body {
   animation: fadeInUp 0.6s ease-out forwards;
   opacity: 0;
 }
+
+@media print {
+  .catalogue-canvas {
+    display: none !important;
+  }
+  .catalogue-canvas::after {
+    content: "Images cannot be printed. Visit pullenstombstones.co.za";
+    display: block;
+    padding: 2rem;
+    text-align: center;
+    font-size: 1rem;
+    color: #666;
+  }
+}
