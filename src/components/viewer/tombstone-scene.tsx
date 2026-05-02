@@ -64,7 +64,7 @@ export function TombstoneScene({ design, covering, angle }: TombstoneSceneProps)
 
       {/* 3D tombstone model from Meshy AI */}
       <group ref={groupRef}>
-        <HeadstoneMesh modelPath={design.headstoneImage} scale={4} />
+        <HeadstoneMesh modelPath={design.headstoneImage} scale={12} />
       </group>
     </>
   );
