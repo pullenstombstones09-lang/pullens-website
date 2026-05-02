@@ -12,6 +12,7 @@ import {
   productSchema,
   faqPageSchema,
 } from "@/components/seo/schemas";
+import { S5Viewer } from "@/components/viewer/tombstone-viewer-client";
 import type { RangeSlug } from "@/types/catalogue";
 
 /* ---------- static params ---------- */
@@ -318,6 +319,16 @@ export default async function RangePage({
           </span>
         </div>
       </Section>
+
+      {/* 3D Viewer (S5 prototype) */}
+      {slug === "signature" && (
+        <Section>
+          <h2 className="font-display text-2xl font-bold text-navy mb-6">
+            Interactive 3D Preview — S5
+          </h2>
+          <S5Viewer />
+        </Section>
+      )}
 
       {/* Product grid */}
       <Section className="bg-cream/50">
