@@ -58,6 +58,10 @@ export interface DesignManifest {
   code: string;
   range: "prestige" | "signature" | "more-for-less" | "exclusive" | "baby";
   name: string;
+  /** Path to background-removed product image (headstone only) */
+  headstoneImage: string;
+  /** Billboard height in mm (how tall the headstone image should render) */
+  headstoneHeight_mm: number;
   headstone: HeadstoneProfile;
   subElements: SubElement[];
   base: BaseSpec;

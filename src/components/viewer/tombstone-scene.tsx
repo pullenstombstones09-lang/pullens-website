@@ -13,17 +13,17 @@ import { CoveringMesh } from "./covering-mesh";
 const CAMERA_PRESETS: Record<CameraAngle, CameraPreset> = {
   front: {
     position: [0, 4, 10],
-    target: [0, 1.5, -1],
+    target: [0, 2, -1],
     label: "Front",
   },
   "three-quarter-left": {
     position: [-7, 4.5, 8],
-    target: [0, 1.2, -1],
+    target: [0, 1.5, -1],
     label: "Left",
   },
   "three-quarter-right": {
     position: [7, 4.5, 8],
-    target: [0, 1.2, -1],
+    target: [0, 1.5, -1],
     label: "Right",
   },
 };
@@ -50,8 +50,8 @@ export function TombstoneScene({ design, covering, angle }: TombstoneSceneProps)
 
   return (
     <>
-      {/* Brighter, warmer lighting */}
-      <ambientLight intensity={0.5} color="#e8e0d8" />
+      {/* Lighting */}
+      <ambientLight intensity={0.6} color="#f0e8e0" />
       <directionalLight
         position={[5, 10, 6]}
         intensity={1.5}
@@ -61,7 +61,6 @@ export function TombstoneScene({ design, covering, angle }: TombstoneSceneProps)
         shadow-mapSize-height={2048}
       />
       <directionalLight position={[-4, 6, -3]} intensity={0.6} color="#d0d8e8" />
-      {/* Rim light from behind to separate from background */}
       <directionalLight position={[0, 3, -8]} intensity={0.3} color="#ffffff" />
 
       <Environment preset="city" environmentIntensity={0.4} />
@@ -73,14 +72,19 @@ export function TombstoneScene({ design, covering, angle }: TombstoneSceneProps)
       </mesh>
 
       <group ref={groupRef}>
+        {/* Kerbs and covering */}
         {showKerbs && <KerbMesh spec={design.kerbs} scale={SCALE} />}
         {showKerbs && <CoveringMesh covering={covering} kerbs={design.kerbs} scale={SCALE} />}
 
-        {/* Base + headstone at the HEAD end */}
+        {/* Base + headstone image at the HEAD end */}
         <group position={[0, 0, -(design.kerbs.outer_depth_mm / 2 - design.base.depth_mm) * SCALE]}>
           <BaseMesh spec={design.base} scale={SCALE} yOffset={showKerbs ? design.kerbs.height_mm : 0} />
           <group position={[0, headstoneY, 0]}>
-            <HeadstoneMesh profile={design.headstone} subElements={design.subElements} inscription={design.inscription} scale={SCALE} />
+            <HeadstoneMesh
+              imagePath={design.headstoneImage}
+              width={design.headstone.width_mm * SCALE}
+              height={design.headstoneHeight_mm * SCALE}
+            />
           </group>
         </group>
       </group>
