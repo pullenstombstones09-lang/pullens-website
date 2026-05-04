@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces } from "next/font/google";
+import { Inter, Lora, Poppins } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,10 +8,19 @@ const inter = Inter({
   display: "swap",
 });
 
-const fraunces = Fraunces({
+const lora = Lora({
   variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
+  style: ["normal", "italic"],
+  weight: ["400", "600", "700"],
+});
+
+const poppins = Poppins({
+  variable: "--font-ui",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -51,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable} h-full antialiased`}>
+    <html lang="en" className={`${inter.variable} ${lora.variable} ${poppins.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

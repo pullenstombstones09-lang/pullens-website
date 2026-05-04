@@ -1,6 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { RangeInfo } from "@/types/catalogue";
-import { Button } from "./button";
 
 interface RangeCardProps {
   range: RangeInfo;
@@ -9,27 +9,29 @@ interface RangeCardProps {
 
 export function RangeCard({ range, featuredImage }: RangeCardProps) {
   return (
-    <div className="bg-cream rounded-lg overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.08),0_8px_24px_rgba(0,0,0,0.12)] hover:translate-y-[-2px] transition-transform duration-200">
-      <div className="relative aspect-[4/3]">
-        <Image
-          src={featuredImage}
-          alt={range.name}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        />
+    <Link href={`/ranges/${range.slug}`} className="group card-editorial">
+      <div className="relative aspect-[4/3] bg-dark overflow-hidden">
+        {featuredImage && (
+          <Image
+            src={featuredImage}
+            alt={`${range.name} tombstone range`}
+            fill
+            className="object-contain p-4 sm:p-6 transition-transform duration-500 group-hover:scale-[1.03]"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        )}
       </div>
       <div className="p-5">
-        <h3 className="font-display font-bold text-xl text-navy">
-          {range.name}
-        </h3>
-        <p className="text-sm text-charcoal/70 mt-1">{range.budgetTier}</p>
-        <div className="mt-4">
-          <Button variant="secondary" href={`/catalogue/${range.slug}`}>
-            View Range
-          </Button>
+        <div className="flex items-baseline justify-between">
+          <h3 className="heading-roman text-lg text-ink gold-underline-hover">
+            {range.name}
+          </h3>
+          <span className="label-ui text-ink-muted text-[9px]">{range.budgetTier}</span>
         </div>
+        <p className="text-sm text-ink-muted mt-2 leading-relaxed line-clamp-2">
+          {range.description}
+        </p>
       </div>
-    </div>
+    </Link>
   );
 }

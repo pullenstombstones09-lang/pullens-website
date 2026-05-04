@@ -1,53 +1,220 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #0d2d5e;
-  --color-blue: #1B4B8A;
-  --color-orange: #FF6B00;
+  /* 2026 Brand Kit — LOCKED */
+  --color-ink: #1A1A1A;
+  --color-ink-soft: #2C2C2C;
+  --color-ink-muted: #5A544A;
+  --color-dark: #0F0F14;
+  --color-cream: #F8F3E9;
+  --color-cream-headline: #F5EFE6;
+  --color-gold: #BF953F;
+  --color-gold-bright: #D4AF37;
+  --color-hairline: #E8DFCF;
+  --color-whatsapp: #25D366;
+  /* Aliases */
+  --color-navy: #0F0F14;
+  --color-orange: #BF953F;
   --color-charcoal: #1A1A1A;
-  --color-off-white: #FAFAF8;
-  --color-gold: #B8860B;
-  --color-cream: #FDF6E3;
-  --font-display: "Fraunces", serif;
+  --color-off-white: #F8F3E9;
+  /* Typography */
+  --font-display: "Lora", serif;
+  --font-ui: "Poppins", sans-serif;
   --font-body: "Inter", sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* ─── BASE ─── */
+html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-body);
-  color: var(--color-charcoal);
-  background-color: var(--color-off-white);
+  color: var(--color-ink);
+  background-color: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* ─── EDITORIAL TYPOGRAPHY ─── */
+.heading-display {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.heading-roman {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+}
+
+.label-ui {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.7rem;
+}
+
+/* ─── GOLD HAIRLINE ─── */
+.hairline-gold {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-gold-bright));
+}
+
+.hairline-gold-wide {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+/* ─── EDITORIAL ANIMATIONS ─── */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes goldReveal {
+  from { width: 0; }
+  to { width: 80px; }
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   opacity: 0;
 }
 
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+/* Stagger children */
+.stagger-1 { animation-delay: 80ms; }
+.stagger-2 { animation-delay: 160ms; }
+.stagger-3 { animation-delay: 240ms; }
+.stagger-4 { animation-delay: 320ms; }
+.stagger-5 { animation-delay: 400ms; }
+.stagger-6 { animation-delay: 480ms; }
+
+/* ─── CARD SYSTEM ─── */
+.card-editorial {
+  background: var(--color-cream);
+  border: 1px solid var(--color-hairline);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.24s ease-out, box-shadow 0.24s ease-out;
+}
+.card-editorial:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 4px 12px rgba(26, 26, 26, 0.06),
+    0 16px 40px rgba(26, 26, 26, 0.1);
+}
+
+/* Gold underline reveal on hover */
+.gold-underline-hover {
+  position: relative;
+}
+.gold-underline-hover::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-gold-bright));
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.gold-underline-hover:hover::after {
+  width: 100%;
+}
+
+/* ─── LAYERED SHADOWS (no shadow-md/lg) ─── */
+.shadow-editorial {
+  box-shadow:
+    0 1px 3px rgba(26, 26, 26, 0.04),
+    0 4px 12px rgba(26, 26, 26, 0.06);
+}
+.shadow-editorial-lg {
+  box-shadow:
+    0 2px 8px rgba(26, 26, 26, 0.06),
+    0 12px 32px rgba(26, 26, 26, 0.1);
+}
+.shadow-editorial-dark {
+  box-shadow:
+    0 4px 16px rgba(15, 15, 20, 0.3),
+    0 16px 48px rgba(15, 15, 20, 0.2);
+}
+
+/* ─── PHOTO OVERLAY FOR LEGIBILITY ─── */
+.photo-darken-bottom {
+  background: linear-gradient(
+    to top,
+    rgba(15, 15, 20, 0.85) 0%,
+    rgba(15, 15, 20, 0.5) 40%,
+    rgba(15, 15, 20, 0.15) 70%,
+    transparent 100%
+  );
+}
+
+.photo-darken-editorial {
+  background: linear-gradient(
+    135deg,
+    rgba(15, 15, 20, 0.82) 0%,
+    rgba(15, 15, 20, 0.55) 45%,
+    rgba(15, 15, 20, 0.2) 100%
+  );
+}
+
+/* ─── NOISE TEXTURE (subtle) ─── */
+.texture-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── REDUCED MOTION ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 @media print {
-  .catalogue-canvas {
-    display: none !important;
-  }
-  .catalogue-canvas::after {
-    content: "Images cannot be printed. Visit pullenstombstones.co.za";
-    display: block;
-    padding: 2rem;
-    text-align: center;
-    font-size: 1rem;
-    color: #666;
-  }
+  .catalogue-canvas { display: none !important; }
 }

@@ -10,7 +10,7 @@ interface Badge {
 const badges: Badge[] = [
   { value: `${BRAND.googleRating}`, label: "Google Reviews", stars: true },
   { value: BRAND.totalInstalls, label: "Memorials Installed" },
-  { value: `Over ${BRAND.yearsInBusiness} Years`, label: "of Excellence" },
+  { value: `Over ${BRAND.yearsInBusiness} Years`, label: "of Craftsmanship" },
   { value: `${BRAND.googleReviews}`, label: "5-Star Reviews" },
 ];
 

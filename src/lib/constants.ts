@@ -14,13 +14,13 @@ export const BRAND = {
 } as const;
 
 export const COLOURS = {
-  navy: "#0d2d5e",
-  blue: "#1B4B8A",
-  orange: "#FF6B00",
-  charcoal: "#1A1A1A",
-  offWhite: "#FAFAF8",
-  gold: "#B8860B",
-  cream: "#FDF6E3",
+  ink: "#1A1A1A",
+  dark: "#0F0F14",
+  cream: "#F8F3E9",
+  gold: "#BF953F",
+  goldBright: "#D4AF37",
+  hairline: "#E8DFCF",
+  whatsapp: "#25D366",
 } as const;
 
 export const LOCATIONS = [
@@ -87,4 +87,4 @@ export const SOCIAL = {
   instagram: "https://www.instagram.com/_pullenstombstones_/",
 } as const;
 
-export const META_PIXEL_ID = "3386049621486839";
+export const META_PIXEL_ID = "930172350063275";

@@ -12,13 +12,13 @@ interface ButtonProps {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  cta: "bg-orange text-white hover:bg-orange/90",
-  secondary: "bg-navy text-white hover:bg-navy/90",
-  whatsapp: "bg-[#25D366] text-white hover:bg-[#25D366]/90",
+  cta: "bg-gold text-dark hover:bg-gold-bright font-semibold",
+  secondary: "bg-transparent text-ink border border-hairline hover:border-gold/40 hover:text-gold",
+  whatsapp: "bg-whatsapp text-white hover:bg-whatsapp/90 font-semibold",
 };
 
 const baseStyles =
-  "min-h-[48px] px-6 py-3 inline-flex items-center justify-center gap-2 rounded-lg font-bold transition-all duration-200 hover:shadow-[0_2px_8px_rgba(0,0,0,0.08),0_8px_24px_rgba(0,0,0,0.12)] cursor-pointer";
+  "min-h-[48px] px-6 py-3 inline-flex items-center justify-center gap-2 rounded-sm text-sm transition-all duration-200 cursor-pointer";
 
 export function Button({
   variant,
@@ -31,7 +31,7 @@ export function Button({
 
   const content = (
     <>
-      {variant === "whatsapp" && <MessageCircle className="h-5 w-5" />}
+      {variant === "whatsapp" && <MessageCircle className="h-4 w-4" />}
       {children}
     </>
   );
