@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Menu, X, MessageCircle, ShoppingBag } from "lucide-react";
+import { useCart } from "@/lib/cart";
 import { LOCATIONS } from "@/lib/constants";
 import { whatsappLink } from "@/lib/utils";
 
@@ -19,6 +20,7 @@ const pmb = LOCATIONS[0];
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { count } = useCart();
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 bg-dark/80 backdrop-blur-md border-b border-white/5">
@@ -33,6 +35,7 @@ export function Header() {
           </span>
         </Link>
 
+        <div className="flex items-center gap-1">
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-1">
           {NAV_LINKS.map((link) => (
@@ -55,6 +58,33 @@ export function Header() {
           </a>
         </nav>
 
+        {/* Cart */}
+        <Link
+          href="/cart"
+          aria-label={`Cart, ${count} items`}
+          className="relative min-h-12 min-w-12 flex items-center justify-center text-white/70 hover:text-white"
+        >
+          <ShoppingBag className="h-5 w-5" />
+          {count > 0 && (
+            <span className="absolute top-1.5 right-1 min-w-4 h-4 px-1 rounded-full bg-gold text-dark text-[10px] font-ui font-bold flex items-center justify-center">
+              {count}
+            </span>
+          )}
+        </Link>
+        {/* Cart */}
+        <Link
+          href="/cart"
+          aria-label={`Cart, ${count} items`}
+          className="relative min-h-12 min-w-12 flex items-center justify-center text-white/70 hover:text-white"
+        >
+          <ShoppingBag className="h-5 w-5" />
+          {count > 0 && (
+            <span className="absolute top-1.5 right-1 min-w-4 h-4 px-1 rounded-full bg-gold text-dark text-[10px] font-ui font-bold flex items-center justify-center">
+              {count}
+            </span>
+          )}
+        </Link>
+
         {/* Mobile hamburger */}
         <button
           type="button"
@@ -64,6 +94,7 @@ export function Header() {
         >
           {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
+        </div>
       </div>
 
       {/* Mobile menu */}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { RANGES, getRangeBySlug, getCatalogueItems } from "@/lib/catalogue";
 import { LOCATIONS } from "@/lib/constants";
@@ -12,7 +13,6 @@ import {
   productSchema,
   faqPageSchema,
 } from "@/components/seo/schemas";
-import { S5Viewer } from "@/components/viewer/tombstone-viewer-client";
 import type { RangeSlug } from "@/types/catalogue";
 
 /* ---------- static params ---------- */
@@ -288,9 +288,9 @@ export default async function RangePage({
       {/* Hero */}
       <Section>
         <nav aria-label="Breadcrumb" className="text-sm text-charcoal/60 mb-6">
-          <a href="/ranges" className="hover:text-orange transition-colors">
+          <Link href="/ranges" className="hover:text-gold transition-colors">
             Ranges
-          </a>
+          </Link>
           <span className="mx-2">/</span>
           <span className="text-charcoal">{range.name}</span>
         </nav>
@@ -301,7 +301,7 @@ export default async function RangePage({
         <p className="text-lg text-charcoal/80 max-w-2xl mb-2">
           {range.description}
         </p>
-        <p className="text-sm font-semibold text-orange uppercase tracking-wide">
+        <p className="text-sm font-semibold text-gold uppercase tracking-wide">
           {range.budgetTier}
         </p>
 
@@ -316,16 +316,6 @@ export default async function RangePage({
           ))}
         </div>
       </Section>
-
-      {/* 3D Viewer (S5 prototype) */}
-      {slug === "signature" && (
-        <Section>
-          <h2 className="font-display text-2xl font-bold text-navy mb-6">
-            Interactive 3D Preview — S5
-          </h2>
-          <S5Viewer />
-        </Section>
-      )}
 
       {/* Product grid */}
       <Section className="bg-cream/50">

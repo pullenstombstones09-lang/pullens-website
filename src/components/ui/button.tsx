@@ -9,6 +9,8 @@ interface ButtonProps {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
+  type?: "button" | "submit";
+  disabled?: boolean;
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -26,6 +28,8 @@ export function Button({
   children,
   className,
   onClick,
+  type = "button",
+  disabled,
 }: ButtonProps) {
   const classes = cn(baseStyles, variantStyles[variant], className ?? "");
 
@@ -45,7 +49,7 @@ export function Button({
   }
 
   return (
-    <button type="button" onClick={onClick} className={classes}>
+    <button type={type} onClick={onClick} disabled={disabled} className={classes}>
       {content}
     </button>
   );
