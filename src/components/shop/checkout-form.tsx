@@ -12,6 +12,7 @@ import {
   planDeposit,
   planMonthly,
 } from "@/lib/pricing";
+import { DEPOT_COLLECTION_NOTE, FREIGHT_REGIONS, quoteFreight, type FreightRegionId } from "@/lib/freight";
 
 const BRANCHES = ["Pietermaritzburg", "Pinetown / Westmead", "Church Street", "Ladysmith"];
 
@@ -19,14 +20,19 @@ type PaymentMode = "full" | "deposit" | "plan3" | "plan6";
 
 export function CheckoutForm() {
   const router = useRouter();
-  const { items, total, count } = useCart();
+  const { items, total: stoneTotal, count } = useCart();
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [cemetery, setCemetery] = useState("");
   const [branch, setBranch] = useState(BRANCHES[0]);
+  const [region, setRegion] = useState<FreightRegionId | "">("");
   const [mode, setMode] = useState<PaymentMode>("deposit");
+
+  const freight = quoteFreight(region || null, items);
+  const freightAmount = freight?.amount ?? 0;
+  const total = stoneTotal + freightAmount;
   const [referral, setReferral] = useState(() => {
     if (typeof window === "undefined") return "";
     const fromUrl = new URLSearchParams(window.location.search).get("ref");
@@ -48,6 +54,10 @@ export function CheckoutForm() {
       setError("Please give us your name and a phone number we can WhatsApp.");
       return;
     }
+    if (!region) {
+      setError("Please choose where you will collect or receive your stone.");
+      return;
+    }
     if (!consent) {
       setError("Please accept the conditions of sale to continue.");
       return;
@@ -59,16 +69,24 @@ export function CheckoutForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           customer: { name, phone, email, cemetery, branch },
+          freightRegion: region,
           paymentMode: mode === "full" ? "full" : mode === "deposit" ? "deposit" : "payment_plan",
           planMonths,
           referral: referral.trim() || null,
           items,
         }),
       });
-      const data = (await res.json()) as { ok: boolean; ref?: string; error?: string };
+      const data = (await res.json()) as {
+        ok: boolean; ref?: string; error?: string; dueNow?: number; freightRegion?: string; freightTotal?: number | null;
+      };
       if (!res.ok || !data.ok || !data.ref) throw new Error(data.error || "Could not place order");
       clearCart();
-      router.push(`/order/${data.ref}?due=${dueNow}`);
+      const q = new URLSearchParams({
+        due: String(data.dueNow ?? dueNow),
+        region: data.freightRegion ?? region,
+        freight: data.freightTotal === null || data.freightTotal === undefined ? "quote" : String(data.freightTotal),
+      });
+      router.push(`/order/${data.ref}?${q.toString()}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
       setBusy(false);
@@ -108,6 +126,43 @@ export function CheckoutForm() {
                 ))}
               </select>
             </label>
+          </fieldset>
+
+          <fieldset className="space-y-3">
+            <legend className="label-ui text-ink-muted text-[11px] mb-2">Collection / delivery region</legend>
+            <label className="block">
+              <span className="block text-sm text-ink mb-1">
+                Where will you collect or receive your stone?<span className="text-gold"> *</span>
+              </span>
+              <select
+                value={region}
+                required
+                onChange={(e) => setRegion(e.target.value as FreightRegionId | "")}
+                className="w-full rounded-sm border border-hairline bg-cream px-4 py-3 text-sm text-ink focus:border-gold focus:outline-none min-h-12"
+              >
+                <option value="">Choose a region</option>
+                {FREIGHT_REGIONS.map((r) => (
+                  <option key={r.id} value={r.id}>{r.label}</option>
+                ))}
+              </select>
+            </label>
+            {freight && (
+              <div className="rounded-sm border border-hairline px-4 py-3 text-sm space-y-1">
+                <p className="text-ink">
+                  <span className="font-medium">Freight: </span>
+                  {freight.amount === null
+                    ? "quoted on WhatsApp before you pay"
+                    : freight.amount === 0
+                      ? "free"
+                      : `${formatZAR(freight.amount)} (${freight.heavy ? "with ledger, ~515 kg" : "kerbset, ~240 kg"} · DSV Economy road freight, ex VAT)`}
+                </p>
+                <p className="text-ink-muted">{freight.region.collection}.</p>
+                {freight.region.note && <p className="text-xs text-ink-muted">{freight.region.note}.</p>}
+                {freight.region.id !== "kzn" && freight.region.id !== "other" && (
+                  <p className="text-xs text-ink-muted">{DEPOT_COLLECTION_NOTE}</p>
+                )}
+              </div>
+            )}
           </fieldset>
 
           <fieldset className="space-y-2">
@@ -158,6 +213,16 @@ export function CheckoutForm() {
             ))}
           </ul>
           <div className="flex items-baseline justify-between border-t border-cream/10 pt-4">
+            <span className="text-sm text-cream/70">Stone &amp; extras</span>
+            <span className="text-sm">{formatZAR(stoneTotal)}</span>
+          </div>
+          <div className="flex items-baseline justify-between">
+            <span className="text-sm text-cream/70">Freight</span>
+            <span className="text-sm">
+              {!freight ? "choose a region" : freight.amount === null ? "to be quoted" : freight.amount === 0 ? "free" : formatZAR(freight.amount)}
+            </span>
+          </div>
+          <div className="flex items-baseline justify-between">
             <span className="text-sm text-cream/70">Order total</span>
             <span className="heading-roman text-xl">{formatZAR(total)}</span>
           </div>

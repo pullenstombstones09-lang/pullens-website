@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getPrice, getExtraById, SHOP_SETTINGS, type CoveringKey } from "@/lib/pricing";
+import { quoteFreight } from "@/lib/freight";
 
 export const runtime = "nodejs";
 
@@ -12,6 +13,7 @@ interface IncomingItem {
 
 interface Payload {
   customer: { name: string; phone: string; email?: string; cemetery?: string; branch?: string };
+  freightRegion?: string | null;
   paymentMode: "full" | "deposit" | "payment_plan";
   planMonths: number | null;
   referral: string | null;
@@ -73,12 +75,20 @@ export async function POST(req: Request) {
     });
   }
 
+  // Freight is computed here from the region and the cart — the client never sets the amount.
+  const freight = quoteFreight(clean(body.freightRegion, 40), lines.map((l) => ({ covering: l.covering, extras: l.extras })));
+  if (!freight) {
+    return NextResponse.json({ ok: false, error: "Please choose a collection / delivery region" }, { status: 400 });
+  }
+  const freightTotal = freight.amount ?? 0;
+
   const paymentMode = body.paymentMode === "full" || body.paymentMode === "payment_plan" ? body.paymentMode : "deposit";
   const planMonths = paymentMode === "payment_plan" && (body.planMonths === 3 || body.planMonths === 6) ? body.planMonths : null;
   const pct = paymentMode === "full" ? 100 : paymentMode === "deposit" ? SHOP_SETTINGS.depositPct : SHOP_SETTINGS.planDepositPct;
 
   const ref = makeRef();
-  const rows = lines.map((l) => ({
+  // One freight line per order, carried on the first row so a multi-stone order is never double-charged.
+  const rows = lines.map((l, idx) => ({
     ref,
     channel: "public",
     customer_name: name,
@@ -86,12 +96,15 @@ export async function POST(req: Request) {
     customer_email: clean(body.customer?.email, 120) || null,
     cemetery: clean(body.customer?.cemetery, 120) || null,
     branch: clean(body.customer?.branch, 60) || null,
+    freight_region: freight.region.id,
+    freight_total: idx === 0 ? freightTotal : 0,
     payment_mode: paymentMode,
     plan_months: planMonths,
-    deposit_due: Math.ceil((l.order_total * pct) / 100),
     referral_code: clean(body.referral, 40).toUpperCase() || null,
     status: "new",
     ...l,
+    order_total: l.order_total + (idx === 0 ? freightTotal : 0),
+    deposit_due: Math.ceil(((l.order_total + (idx === 0 ? freightTotal : 0)) * pct) / 100),
   }));
 
   const url = process.env.SUPABASE_URL;
@@ -120,5 +133,13 @@ export async function POST(req: Request) {
 
   const total = rows.reduce((s, r) => s + r.order_total, 0);
   const dueNow = rows.reduce((s, r) => s + r.deposit_due, 0);
-  return NextResponse.json({ ok: true, ref, stored, total, dueNow });
+  return NextResponse.json({
+    ok: true,
+    ref,
+    stored,
+    total,
+    dueNow,
+    freightRegion: freight.region.id,
+    freightTotal: freight.amount,
+  });
 }

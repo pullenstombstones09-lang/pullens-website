@@ -18,6 +18,9 @@ import {
   type PriceRow,
 } from "@/lib/pricing";
 import { whatsappLink } from "@/lib/utils";
+import { cheapestPaidFreight } from "@/lib/freight";
+
+const FREIGHT_FROM = cheapestPaidFreight();
 
 interface Props {
   code: string;
@@ -180,7 +183,11 @@ export function ProductConfigurator({
           <span className="heading-roman text-lg">Total</span>
           <span className="heading-roman text-2xl text-gold">{formatZAR(total)}</span>
         </div>
-        <p className="text-xs text-cream/50">Prices include VAT. Delivery and installation quoted separately.</p>
+        <p className="text-xs text-cream/50">
+          Prices include VAT. Freight: free within 50 km of our KZN branches
+          {FREIGHT_FROM ? `, from ${formatZAR(FREIGHT_FROM.amount)} to ${FREIGHT_FROM.label}` : ""}
+          {" "}— added at checkout. Installation quoted separately.
+        </p>
 
         <div className="grid gap-2 pt-2 text-sm">
           <PaymentLine label="Pay in full" amount={formatZAR(total)} note="now" />
