@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import { getPrice, getExtraById, SHOP_SETTINGS, type CoveringKey } from "@/lib/pricing";
+import { getPrice, getExtraById, tradePriceFor, SHOP_SETTINGS, type CoveringKey } from "@/lib/pricing";
 import { quoteFreight } from "@/lib/freight";
+import { getTradeSession } from "@/lib/trade-session";
 
 export const runtime = "nodejs";
 
@@ -14,6 +15,10 @@ interface IncomingItem {
 interface Payload {
   customer: { name: string; phone: string; email?: string; cemetery?: string; branch?: string };
   freightRegion?: string | null;
+  /** Trade only: collect from a Pullen's branch instead of freight. */
+  branchCollect?: boolean;
+  /** Trade only: family / deceased reference for the invoice. */
+  tradeReference?: string | null;
   paymentMode: "full" | "deposit" | "payment_plan";
   planMonths: number | null;
   referral: string | null;
@@ -42,8 +47,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "Bad request" }, { status: 400 });
   }
 
-  const name = clean(body.customer?.name, 120);
-  const phone = clean(body.customer?.phone, 30);
+  // A valid trade cookie switches the order to the trade channel and trade pricing.
+  const trade = await getTradeSession();
+
+  const name = clean(body.customer?.name, 120) || (trade ? trade.parlour : "");
+  const phone = clean(body.customer?.phone, 30) || (trade ? trade.phone : "");
   if (!name || !phone) {
     return NextResponse.json({ ok: false, error: "Name and phone are required" }, { status: 400 });
   }
@@ -55,7 +63,15 @@ export async function POST(req: Request) {
   const lines = [];
   for (const it of body.items) {
     const row = getPrice(clean(it.code, 10));
-    const stone = row ? row[it.covering] : null;
+    let stone: number | null = null;
+    if (row) {
+      if (trade) {
+        stone = tradePriceFor(row, it.covering)?.amount ?? null;
+      } else {
+        const retail = row[it.covering];
+        stone = typeof retail === "number" ? retail : null;
+      }
+    }
     if (!row || typeof stone !== "number") {
       return NextResponse.json({ ok: false, error: `Design ${it.code} cannot be ordered online` }, { status: 400 });
     }
@@ -76,27 +92,42 @@ export async function POST(req: Request) {
   }
 
   // Freight is computed here from the region and the cart — the client never sets the amount.
-  const freight = quoteFreight(clean(body.freightRegion, 40), lines.map((l) => ({ covering: l.covering, extras: l.extras })));
-  if (!freight) {
+  // Trade accounts may instead collect from a Pullen's branch at no freight.
+  const branchCollect = !!trade && body.branchCollect === true;
+  const freight = branchCollect
+    ? null
+    : quoteFreight(clean(body.freightRegion, 40), lines.map((l) => ({ covering: l.covering, extras: l.extras })));
+  if (!branchCollect && !freight) {
     return NextResponse.json({ ok: false, error: "Please choose a collection / delivery region" }, { status: 400 });
   }
-  const freightTotal = freight.amount ?? 0;
+  const freightTotal = freight?.amount ?? 0;
+  const freightRegionId = branchCollect ? "branch-collect" : freight!.region.id;
 
-  const paymentMode = body.paymentMode === "full" || body.paymentMode === "payment_plan" ? body.paymentMode : "deposit";
+  const onAccount = !!trade && trade.onAccount;
+  const paymentMode = trade
+    ? onAccount
+      ? "account"
+      : "deposit"
+    : body.paymentMode === "full" || body.paymentMode === "payment_plan"
+      ? body.paymentMode
+      : "deposit";
   const planMonths = paymentMode === "payment_plan" && (body.planMonths === 3 || body.planMonths === 6) ? body.planMonths : null;
-  const pct = paymentMode === "full" ? 100 : paymentMode === "deposit" ? SHOP_SETTINGS.depositPct : SHOP_SETTINGS.planDepositPct;
+  const pct =
+    paymentMode === "account" ? 0 : paymentMode === "full" ? 100 : paymentMode === "deposit" ? SHOP_SETTINGS.depositPct : SHOP_SETTINGS.planDepositPct;
 
   const ref = makeRef();
   // One freight line per order, carried on the first row so a multi-stone order is never double-charged.
   const rows = lines.map((l, idx) => ({
     ref,
-    channel: "public",
+    channel: trade ? "trade" : "public",
+    trade_account_id: trade ? trade.id : null,
     customer_name: name,
     customer_phone: phone,
     customer_email: clean(body.customer?.email, 120) || null,
     cemetery: clean(body.customer?.cemetery, 120) || null,
     branch: clean(body.customer?.branch, 60) || null,
-    freight_region: freight.region.id,
+    notes: clean(body.tradeReference, 200) || null,
+    freight_region: freightRegionId,
     freight_total: idx === 0 ? freightTotal : 0,
     payment_mode: paymentMode,
     plan_months: planMonths,
@@ -139,7 +170,7 @@ export async function POST(req: Request) {
     stored,
     total,
     dueNow,
-    freightRegion: freight.region.id,
-    freightTotal: freight.amount,
+    freightRegion: freightRegionId,
+    freightTotal: branchCollect ? 0 : freight!.amount,
   });
 }

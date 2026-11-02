@@ -111,3 +111,47 @@ function slugify(s: string): string {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }
+
+/* ---------- trade pricing ---------- */
+
+/* =====================================================================
+ * PLACEHOLDER — replace with the real trade price list.
+ * Until real trade prices are loaded into the pricelist trade_* columns,
+ * trade prices are simulated as retail minus this discount, rounded to
+ * the nearest R50, and badged "sample trade pricing" wherever shown.
+ * ===================================================================== */
+export const TRADE_PLACEHOLDER_DISCOUNT = 0.3;
+
+const TRADE_COLUMNS: Record<CoveringKey, keyof PriceRow> = {
+  cc: "trade_price",
+  kc: "trade_price_kerbs_chips",
+  t: "trade_price_tiles",
+  ks: "trade_price_kerbs_slab",
+};
+
+export interface TradePrice {
+  amount: number;
+  /** true while the amount is derived from retail — not the real trade list */
+  placeholder: boolean;
+}
+
+export function tradePriceFor(row: PriceRow, covering: CoveringKey): TradePrice | null {
+  const retail = row[covering];
+  if (typeof retail !== "number" || retail <= 0) return null;
+  const loaded = row[TRADE_COLUMNS[covering]];
+  if (typeof loaded === "number" && loaded > 0) {
+    return { amount: loaded, placeholder: false };
+  }
+  const amount = Math.round((retail * (1 - TRADE_PLACEHOLDER_DISCOUNT)) / 50) * 50;
+  return { amount, placeholder: true };
+}
+
+export function tradeFromPrice(code: string): TradePrice | null {
+  const row = getPrice(code);
+  if (!row) return null;
+  const prices = availableCoverings(row)
+    .map((k) => tradePriceFor(row, k))
+    .filter((p): p is TradePrice => p !== null);
+  if (!prices.length) return null;
+  return prices.reduce((min, p) => (p.amount < min.amount ? p : min));
+}
