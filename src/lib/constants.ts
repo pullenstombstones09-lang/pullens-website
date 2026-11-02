@@ -95,3 +95,15 @@ export const META_PIXEL_ID = "930172350063275";
  * to this number.
  * ===================================================================== */
 export const WHATSAPP_RECRUITMENT_NUMBER = "+27843876913";
+
+/* =====================================================================
+ * PLACEHOLDER — internal intake PIN for /fitters/intake (the consultant's
+ * call screen). Change before sharing the page with staff. Not a security
+ * boundary — it only keeps casual visitors out of an unlisted page.
+ * ===================================================================== */
+export const INTAKE_PIN = "4188";
+
+/* Message the consultant sends the prospect right after a call.
+ * {name} and {link} are replaced automatically. Edit freely. */
+export const INTAKE_FOLLOWUP_MESSAGE =
+  "Good day {name}, thank you for your time on the phone. Here is our fitter programme page with everything in writing: {link} — I will send the agreement next. Pullen's Tombstones, est. 1982.";

@@ -18,6 +18,10 @@ interface Payload {
   experienceYears: string;
   installingForOthers: boolean;
   message?: string;
+  /** Set by the internal intake screen (/fitters/intake) only. */
+  capturedBy?: string;
+  outcome?: string;
+  followUpDate?: string;
 }
 
 function clean(s: unknown, max = 200): string {
@@ -43,8 +47,14 @@ export async function POST(req: Request) {
     );
   }
 
+  const capturedBy = clean(body.capturedBy, 20);
+  const outcome = clean(body.outcome, 30);
+  const followUpDate = clean(body.followUpDate, 20);
+
   const notes = [
-    `Applied via website`,
+    capturedBy === "intake" ? `Captured by consultant (intake call)` : `Applied via website`,
+    outcome ? `Outcome: ${outcome}` : "",
+    followUpDate ? `Follow up: ${followUpDate}` : "",
     `Own bakkie: ${body.ownBakkie ? "yes" : "no"}`,
     `Experience: ${clean(body.experienceYears, 20) || "not given"} years`,
     `Installing for other companies: ${body.installingForOthers ? "yes" : "no"}`,
@@ -70,7 +80,7 @@ export async function POST(req: Request) {
           name,
           phone,
           area: `${town}, ${province}`,
-          status: "applied",
+          status: outcome === "send contract" ? "contract_sent" : "applied",
           notes,
         }),
       });
