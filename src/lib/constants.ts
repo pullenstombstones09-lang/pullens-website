@@ -88,3 +88,10 @@ export const SOCIAL = {
 } as const;
 
 export const META_PIXEL_ID = "930172350063275";
+
+/* =====================================================================
+ * PLACEHOLDER — replace with the real recruitment WhatsApp number before
+ * the fitter page is promoted anywhere. Applications currently deep-link
+ * to this number.
+ * ===================================================================== */
+export const WHATSAPP_RECRUITMENT_NUMBER = "+27843876913";

@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/contact", priority: 0.8 },
     { url: "/faq", priority: 0.7 },
     { url: "/specials", priority: 0.8 },
+    { url: "/fitters", priority: 0.6 },
     { url: "/pinetown", priority: 0.7 },
     { url: "/blog", priority: 0.7 },
     { url: "/blog/how-to-choose-a-tombstone", priority: 0.6 },
