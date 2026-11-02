@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { ChevronDown, Lock, MessageCircle, Phone } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
@@ -77,14 +77,15 @@ function readPinOk(): boolean {
   }
 }
 
+const subscribeNoop = () => () => {};
+
 export function IntakeScreen() {
-  const [unlocked, setUnlocked] = useState(false);
+  // Session-remembered unlock, hydration-safe (server snapshot: locked).
+  const storedOk = useSyncExternalStore(subscribeNoop, readPinOk, () => false);
+  const [justUnlocked, setJustUnlocked] = useState(false);
+  const unlocked = storedOk || justUnlocked;
   const [pin, setPin] = useState("");
   const [pinError, setPinError] = useState(false);
-
-  useEffect(() => {
-    setUnlocked(readPinOk());
-  }, []);
 
   function tryUnlock(e: React.FormEvent) {
     e.preventDefault();
@@ -94,7 +95,7 @@ export function IntakeScreen() {
       } catch {
         /* session-only fallback */
       }
-      setUnlocked(true);
+      setJustUnlocked(true);
     } else {
       setPinError(true);
       setPin("");
