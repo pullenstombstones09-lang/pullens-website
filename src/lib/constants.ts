@@ -5,7 +5,7 @@ export const BRAND = {
   taglineZulu: "Amatshe Amathuna",
   established: 1982,
   yearsInBusiness: new Date().getFullYear() - 1982,
-  totalInstalls: "22,000+",
+  totalInstalls: "30,000+",
   googleRating: 4.9,
   googleReviews: 156,
   facebookFollowers: "4,423",
