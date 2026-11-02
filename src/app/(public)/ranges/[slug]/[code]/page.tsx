@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { RANGES, getRangeBySlug, getCatalogueItems } from "@/lib/catalogue";
 import { LOCATIONS } from "@/lib/constants";
-import { getPrice, fromPrice, formatZAR } from "@/lib/pricing";
+import { availableCoverings, getExtrasPublic, getPrice } from "@/lib/pricing";
 import { whatsappLink } from "@/lib/utils";
 import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
@@ -27,12 +27,9 @@ export async function generateMetadata({
   const { slug, code } = await params;
   const range = getRangeBySlug(slug as RangeSlug);
   if (!range) return {};
-  const from = fromPrice(code);
   return {
     title: `${code} — ${range.name} Range Tombstone`,
-    description: from
-      ? `Design ${code} from the ${range.name} range, from ${formatZAR(from)} incl. VAT. Choose your covering, extras and inscription, and order online.`
-      : `Design ${code} from the ${range.name} range. Ask us for a quote on WhatsApp.`,
+    description: `Design ${code} from the ${range.name} range. Choose your covering, extras and inscription, get your price in seconds, and order online.`,
   };
 }
 
@@ -99,7 +96,8 @@ export default async function ProductPage({
                 rangeSlug={range.slug}
                 rangeName={range.name}
                 imagePath={item.imagePath}
-                row={row}
+                coverings={availableCoverings(row)}
+                extrasList={getExtrasPublic()}
                 whatsapp={hq.whatsapp}
               />
             ) : (

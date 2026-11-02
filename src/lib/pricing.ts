@@ -1,8 +1,30 @@
 import data from "./pricing-data.json";
+import {
+  COVERING_ORDER,
+  type CoveringKey,
+} from "./pricing-client";
+
+/**
+ * SERVER-ONLY pricing data layer.
+ *
+ * This module imports the full price list, so it must never be imported
+ * from a "use client" component on the public site — public visitors get
+ * prices only from /api/quote after leaving their name and WhatsApp
+ * number. Client-safe helpers live in src/lib/pricing-client.ts.
+ */
+
+export {
+  COVERINGS,
+  COVERING_ORDER,
+  SHOP_SETTINGS,
+  depositAmount,
+  formatZAR,
+  planDeposit,
+  planMonthly,
+  type CoveringKey,
+} from "./pricing-client";
 
 /* ---------- types ---------- */
-
-export type CoveringKey = "cc" | "kc" | "t" | "ks";
 
 export interface PriceRow {
   code: string | null;
@@ -28,26 +50,6 @@ export interface Extra {
   price: number | null; // null = price on application
 }
 
-/* ---------- settings ---------- */
-
-export const SHOP_SETTINGS = {
-  depositPct: 50,
-  planDepositPct: 30,
-  planMonthsOptions: [3, 6] as const,
-  productionAtPct: 50,
-  quoteValidityDays: 30,
-  currency: "ZAR",
-} as const;
-
-export const COVERINGS: Record<CoveringKey, string> = {
-  cc: "Head & Base",
-  kc: "Kerbs & Chips",
-  t: "Tiles",
-  ks: "Kerbs & Slab",
-};
-
-export const COVERING_ORDER: CoveringKey[] = ["cc", "kc", "t", "ks"];
-
 /* ---------- data ---------- */
 
 const rows = data as PriceRow[];
@@ -71,6 +73,16 @@ export function fromPrice(code: string): number | null {
   return vals.length ? Math.min(...vals) : null;
 }
 
+/** Lowest Head & Base price across a set of designs — the one public "From R x" per range. */
+export function rangeFromPrice(codes: string[]): number | null {
+  const vals: number[] = [];
+  for (const code of codes) {
+    const row = getPrice(code);
+    if (row && typeof row.cc === "number" && row.cc > 0) vals.push(row.cc);
+  }
+  return vals.length ? Math.min(...vals) : null;
+}
+
 export function getExtras(): Extra[] {
   return rows
     .filter((r) => r.cat === "extras")
@@ -86,23 +98,9 @@ export function getExtraById(id: string): Extra | undefined {
   return getExtras().find((e) => e.id === id);
 }
 
-/* ---------- money ---------- */
-
-export function formatZAR(amount: number): string {
-  const rounded = Math.round(amount);
-  return "R " + rounded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-}
-
-export function depositAmount(total: number): number {
-  return Math.ceil((total * SHOP_SETTINGS.depositPct) / 100);
-}
-
-export function planDeposit(total: number): number {
-  return Math.ceil((total * SHOP_SETTINGS.planDepositPct) / 100);
-}
-
-export function planMonthly(total: number, months: number): number {
-  return Math.ceil((total - planDeposit(total)) / months);
+/** Names only — safe to pass to public client components (no prices). */
+export function getExtrasPublic(): { id: string; name: string; poa: boolean }[] {
+  return getExtras().map((e) => ({ id: e.id, name: e.name, poa: e.price === null }));
 }
 
 /* ---------- helpers ---------- */

@@ -6,7 +6,7 @@ import { Trash2 } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { removeFromCart, useCart } from "@/lib/cart";
-import { depositAmount, formatZAR } from "@/lib/pricing";
+import { depositAmount, formatZAR } from "@/lib/pricing-client";
 
 export function CartView() {
   const { items, total, count } = useCart();

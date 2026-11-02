@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { LOCATIONS } from "@/lib/constants";
-import { formatZAR } from "@/lib/pricing";
+import { formatZAR } from "@/lib/pricing-client";
 import { whatsappLink } from "@/lib/utils";
 import { DEPOT_COLLECTION_NOTE, getFreightRegion } from "@/lib/freight";
 

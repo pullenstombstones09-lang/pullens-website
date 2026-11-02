@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import type { CoveringKey } from "./pricing";
+import type { CoveringKey } from "./pricing-client";
 
 export interface CartItem {
   id: string;

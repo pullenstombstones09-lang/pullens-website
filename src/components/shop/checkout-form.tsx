@@ -11,7 +11,7 @@ import {
   formatZAR,
   planDeposit,
   planMonthly,
-} from "@/lib/pricing";
+} from "@/lib/pricing-client";
 import { DEPOT_COLLECTION_NOTE, FREIGHT_REGIONS, quoteFreight, type FreightRegionId } from "@/lib/freight";
 
 const BRANCHES = ["Pietermaritzburg", "Pinetown / Westmead", "Church Street", "Ladysmith"];

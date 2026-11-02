@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { RANGES, getRangeBySlug, getCatalogueItems } from "@/lib/catalogue";
 import { LOCATIONS } from "@/lib/constants";
+import { formatZAR, rangeFromPrice } from "@/lib/pricing";
 import { whatsappLink } from "@/lib/utils";
 import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
@@ -262,6 +263,7 @@ export default async function RangePage({
 
   const items = getCatalogueItems(slug as RangeSlug);
   const hq = LOCATIONS[0];
+  const from = rangeFromPrice(items.map((i) => i.code));
 
   return (
     <>
@@ -303,6 +305,7 @@ export default async function RangePage({
         </p>
         <p className="text-sm font-semibold text-gold uppercase tracking-wide">
           {range.budgetTier}
+          {from ? ` · From ${formatZAR(from)}` : ""}
         </p>
 
         <div className="mt-4 flex flex-wrap gap-2">

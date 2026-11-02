@@ -1,4 +1,4 @@
-import type { CoveringKey } from "./pricing";
+import type { CoveringKey } from "./pricing-client";
 
 /**
  * Freight lanes — DSV Economy road freight, customer collects at the DSV depot.
